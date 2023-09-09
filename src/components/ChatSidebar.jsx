@@ -4,51 +4,53 @@ import { Stack } from "@mui/material";
 
 export default function ChatSidebar() {
   return (
-    <>
-      <Stack spacing={1} sx={{ padding: "0.5em" }}>
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
-      </Stack>
-    </>
+    <Stack
+      flex="1"
+      spacing={1}
+      sx={{ p: "1em", height: "73.5vh", overflow: "scroll" }}
+    >
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+    </Stack>
   );
 }
