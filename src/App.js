@@ -4,6 +4,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import SidebarItems from "./components/SidebarItems";
 import { useState } from "react";
+import CallSidebar from "./components/CallSidebar";
 
 function App() {
   const [chatActive, setChatActive] = useState(true);
@@ -12,11 +13,11 @@ function App() {
   return (
     <Box>
       <NavBar />
+      {/* SideBar */}
       <Stack direction="row" mt="4em">
         <Box
           sx={{
             backgroundColor: "#fafafa",
-            minWidth: "28vw",
           }}
         >
           <SidebarItems
@@ -28,9 +29,11 @@ function App() {
             setNotificationActive={setNotificationActive}
           />
           {chatActive ? <ChatSidebar /> : null}
+          {callActive ? <CallSidebar /> : null}
         </Box>
+        {/* ChatBody */}
         <Box flex="2" display={{ xs: "none", sm: "flex", lg: "flex" }}>
-          Sidebar
+          ChatBody
         </Box>
       </Stack>
     </Box>
