@@ -1,6 +1,5 @@
 import React from "react";
 import { Call, Chat, NotificationAdd, Search } from "@mui/icons-material";
-import { useState } from "react";
 
 import {
   Box,
@@ -11,10 +10,16 @@ import {
   Divider,
 } from "@mui/material";
 
-export default function SidebarItems() {
-  const [chatActive, setChatActive] = useState(true);
-  const [callActive, setCallActive] = useState(false);
-  const [notificationActive, setNotificationActive] = useState(false);
+export default function SidebarItems(props) {
+  const {
+    chatActive,
+    setChatActive,
+    callActive,
+    setCallActive,
+    notificationActive,
+    setNotificationActive,
+  } = props;
+
   return (
     <Box>
       {/* Search */}

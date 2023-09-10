@@ -3,8 +3,12 @@ import ChatSidebar from "./components/ChatSidebar";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import SidebarItems from "./components/SidebarItems";
+import { useState } from "react";
 
 function App() {
+  const [chatActive, setChatActive] = useState(true);
+  const [callActive, setCallActive] = useState(false);
+  const [notificationActive, setNotificationActive] = useState(false);
   return (
     <Box>
       <NavBar />
@@ -15,8 +19,15 @@ function App() {
             minWidth: "28vw",
           }}
         >
-          <SidebarItems />
-          <ChatSidebar />
+          <SidebarItems
+            chatActive={chatActive}
+            setChatActive={setChatActive}
+            callActive={callActive}
+            setCallActive={setCallActive}
+            notificationActive={notificationActive}
+            setNotificationActive={setNotificationActive}
+          />
+          {chatActive ? <ChatSidebar /> : null}
         </Box>
         <Box flex="2" display={{ xs: "none", sm: "flex", lg: "flex" }}>
           Sidebar
