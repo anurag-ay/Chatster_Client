@@ -7,7 +7,12 @@ export default function ChatSidebar() {
     <Stack
       flex="1"
       spacing={1}
-      sx={{ p: "1em 1em 0em 1em", height: "71.5vh", overflowY: "scroll" }}
+      sx={{
+        p: "1em 1em 0em 1em",
+        height: "71.5vh",
+        overflowY: "scroll",
+        minWidth: "25vw",
+      }}
     >
       <ContactCard />
       <ContactCard />
