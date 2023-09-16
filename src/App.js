@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import SidebarItems from "./components/SidebarItems";
 import { useState } from "react";
 import CallSidebar from "./components/CallSidebar";
+import Chatbody from "./components/Chatbody";
 
 function App() {
   const [chatActive, setChatActive] = useState(true);
@@ -33,7 +34,7 @@ function App() {
         </Box>
         {/* ChatBody */}
         <Box flex="2" display={{ xs: "none", sm: "flex", lg: "flex" }}>
-          ChatBody
+          <Chatbody />
         </Box>
       </Stack>
     </Box>
