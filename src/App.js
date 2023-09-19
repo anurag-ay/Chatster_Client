@@ -19,7 +19,9 @@ function App() {
         <Box
           sx={{
             backgroundColor: "#fafafa",
+            
           }}
+          
         >
           <SidebarItems
             chatActive={chatActive}
@@ -33,7 +35,7 @@ function App() {
           {callActive ? <CallSidebar /> : null}
         </Box>
         {/* ChatBody */}
-        <Box flex="2" display={{ xs: "none", sm: "flex", lg: "flex" }}>
+        <Box flex="2" maxWidth={"73.6vw"}>
           <Chatbody />
         </Box>
       </Stack>

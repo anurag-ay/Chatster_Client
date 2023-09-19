@@ -14,8 +14,7 @@ function Inputbox() {
     }}
     top={"100%"}
     >
-        <TextField id="outlined-basic" sx={{ maxWidth:"800vw",
-        minWidth: "25vw"}} label="Type a message here....." variant="outlined" />
+        <TextField fullWidth label="Type a message here....." variant="outlined" />
       <Box sx={{
       
       display:"flex",

@@ -11,7 +11,7 @@ function Chatbody() {
       // backgroundColor:"black",
       height:"100%",
       maxWidth:"100%",
-      minWidth: "25vw",
+      // minWidth: "25vw",
     }}
     >
       <ChatbodyNav />
