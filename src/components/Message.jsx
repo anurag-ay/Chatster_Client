@@ -1,44 +1,34 @@
-import { Box } from '@mui/material'
-import React from 'react'
+import { Box, Typography } from "@mui/material";
+import { Stack } from "@mui/system";
+import React from "react";
 
-function Message(props) {
-  return (<>
-    {
-    
-    props.type==="receive"?
-    <Box
-    marginRight="auto"
-    >
-        <span>10:30</span>
-        <Box
+function Message({ message, type, timestamp }) {
+  return (
+    <Box m={type === "receive" ? "0.5em auto 0.5em 0" : "0.5em 0 0.5em auto"}>
+      <Box
         maxWidth={"25vw"}
-        backgroundColor={"white"}
+        backgroundColor={type === "receive" ? "lightgreen" : "lightgrey"}
         sx={{
-            borderRadius:"1rem",
-            padding:"0.3rem"
-        }}>
-            <p>{props.message}</p>
-         </Box>
-   </Box>
-   :<Box
-    marginLeft="auto"
-    >
-        <span
-        marginLeft="auto"
-        >10:30</span>
-        <Box
-        maxWidth={"25vw"}
-        backgroundColor={"white"}
-        sx={{
-            borderRadius:"1rem",
-            padding:"0.3rem"
-        }}>
-            <p>{props.message}</p>
-         </Box>
-   </Box>
-   }
-   </>
-  )
+          borderRadius: "0.5em",
+          padding: "0.3em 0.3em 0 0.4em ",
+        }}
+      >
+        <Typography>{message}</Typography>
+        <Stack alignItems="flex-end">
+          <Typography
+            variant="body2"
+            sx={{
+              fontSize: "0.7em",
+              fontWeight: "light",
+              p: "0 0.2em 0.2em 0.2em",
+            }}
+          >
+            {timestamp}
+          </Typography>
+        </Stack>
+      </Box>
+    </Box>
+  );
 }
 
-export default Message
+export default Message;

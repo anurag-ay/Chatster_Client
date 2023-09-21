@@ -1,36 +1,83 @@
-import { Stack } from '@mui/material'
-import React from 'react'
-import Message from './Message'
+import { Stack } from "@mui/material";
+import React from "react";
+import Message from "./Message";
 
 function Chat() {
   return (
-    <div>
-      
-      <Stack
-      direction={"column"}
-      overflow={"scroll"}
+    <Stack
+      direction="column"
       sx={{
-        p: "1em 1em 0em 1em",
-        height: "60vh",
-        maxWidth:"73vw",
-        minWidth: "25vw",
-        backgroundColor:"gray",
-        overflow:"scroll"
+        p: "0 0.4em 0 0.4em",
+        height: "75vh",
+        backgroundColor: "gray",
+        overflowY: "scroll",
       }}
-      >
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="send"/>
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="receive"/>
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="send"/>
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="receive"/>
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="send"/>
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="send"/>
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="receive"/>
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="send"/>
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="receive"/>
-        <Message message= "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia." type="send"/>
-      </Stack>
-    </div>
-  )
+    >
+      {messages.map((msg, index) => (
+        <Message
+          key={index}
+          message={msg.message}
+          timestamp={msg.timestamp}
+          type={msg.type}
+        />
+      ))}
+    </Stack>
+  );
 }
-
-export default Chat
+const messages = [
+  {
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
+    type: "send",
+    timestamp: "10:50 AM",
+  },
+  {
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
+    type: "receive",
+    timestamp: "10:50 AM",
+  },
+  {
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
+    type: "send",
+    timestamp: "10:50 AM",
+  },
+  {
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
+    type: "receive",
+    timestamp: "10:50 AM",
+  },
+  {
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
+    type: "receive",
+    timestamp: "10:50 AM",
+  },
+  {
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
+    type: "send",
+    timestamp: "10:50 AM",
+  },
+  {
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
+    type: "receive",
+    timestamp: "10:50 AM",
+  },
+  {
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
+    type: "send",
+    timestamp: "10:50 AM",
+  },
+  {
+    message:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
+    type: "send",
+    timestamp: "10:50 AM",
+  },
+];
+export default Chat;
