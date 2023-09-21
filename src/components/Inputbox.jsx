@@ -12,7 +12,9 @@ function Inputbox() {
   const [chat, setChat] = useState("");
 
   useEffect(() => {
-    console.log(chat);
+    if (chat) {
+      console.log(chat);
+    }
   }, [chat]);
 
   function handleEmojiClick(EmojiObj) {
