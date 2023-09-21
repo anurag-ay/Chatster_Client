@@ -1,4 +1,4 @@
-import { Box,Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import ChatSidebar from "./components/ChatSidebar";
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -6,7 +6,7 @@ import SidebarItems from "./components/SidebarItems";
 import { useState } from "react";
 import CallSidebar from "./components/CallSidebar";
 import Chatbody from "./components/Chatbody";
-
+import CallUi from "./components/CallUi";
 
 function App() {
   const [chatActive, setChatActive] = useState(true);
@@ -14,8 +14,8 @@ function App() {
   const [notificationActive, setNotificationActive] = useState(false);
   return (
     <Box>
-      <NavBar />
-      {/* SideBar */}
+      <CallUi />
+      {/* <NavBar />
       <Stack direction="row" mt="4em">
         <Box
           sx={{
@@ -35,12 +35,10 @@ function App() {
           {chatActive ? <ChatSidebar /> : null}
           {callActive ? <CallSidebar /> : null}
         </Box>
-        {/* ChatBody */}
         <Box flex="2" maxWidth={"73.6vw"}>
           <Chatbody />
         </Box>
-      </Stack>
-   
+      </Stack> */}
     </Box>
   );
 }
