@@ -14,15 +14,13 @@ function App() {
   const [notificationActive, setNotificationActive] = useState(false);
   return (
     <Box>
-      <CallUi />
-      {/* <NavBar />
+      {/* <CallUi /> */}
+      <NavBar />
       <Stack direction="row" mt="4em">
         <Box
           sx={{
             backgroundColor: "#fafafa",
-            
           }}
-          
         >
           <SidebarItems
             chatActive={chatActive}
@@ -38,7 +36,7 @@ function App() {
         <Box flex="2" maxWidth={"73.6vw"}>
           <Chatbody />
         </Box>
-      </Stack> */}
+      </Stack>
     </Box>
   );
 }
