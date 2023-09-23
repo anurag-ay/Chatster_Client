@@ -3,17 +3,28 @@ import ChatSidebar from "./components/ChatSidebar";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import SidebarItems from "./components/SidebarItems";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CallSidebar from "./components/CallSidebar";
 import Chatbody from "./components/Chatbody";
+
 import CallUi from "./components/CallUi";
 import VideoCall from "./components/VideoCall";
 import SignUp from "./components/SignUp";
+
+
+import { io } from "socket.io-client";
+
 
 function App() {
   const [chatActive, setChatActive] = useState(true);
   const [callActive, setCallActive] = useState(false);
   const [notificationActive, setNotificationActive] = useState(false);
+
+  useEffect(() => {
+    console.log("check");
+    io("http://localhost:5000");
+  }, []);
+
   return (
     <Box>
       <SignUp/>
