@@ -18,5 +18,4 @@ export const getContactsRoute = "/api/user/getContacts";
 export const chatRoute = "/api/chats";
 
 // Auth Route
-
 export const authRoute = "/api/auth";
