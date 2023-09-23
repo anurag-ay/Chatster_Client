@@ -6,8 +6,14 @@ import SidebarItems from "./components/SidebarItems";
 import { useEffect, useState } from "react";
 import CallSidebar from "./components/CallSidebar";
 import Chatbody from "./components/Chatbody";
-// import CallUi from "./components/CallUi";
+
+import CallUi from "./components/CallUi";
+import VideoCall from "./components/VideoCall";
+import SignUp from "./components/SignUp";
+
+
 import { io } from "socket.io-client";
+
 
 function App() {
   const [chatActive, setChatActive] = useState(true);
@@ -21,8 +27,10 @@ function App() {
 
   return (
     <Box>
+      <SignUp/>
+      {/* <VideoCall/> */}
       {/* <CallUi /> */}
-      <NavBar />
+      {/* <NavBar />
       <Stack direction="row" mt="4em">
         <Box
           sx={{
@@ -43,7 +51,7 @@ function App() {
         <Box flex="2" maxWidth={"73.6vw"}>
           <Chatbody />
         </Box>
-      </Stack>
+      </Stack> */}
     </Box>
   );
 }
