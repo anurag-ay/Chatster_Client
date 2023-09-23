@@ -15,7 +15,6 @@ function App() {
   const [notificationActive, setNotificationActive] = useState(false);
 
   useEffect(() => {
-    console.log("check");
     io("http://localhost:5000");
   }, []);
 
