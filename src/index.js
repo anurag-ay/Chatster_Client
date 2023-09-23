@@ -2,11 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import UserInfoProvider from "./context/userInfoContex";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <UserInfoProvider>
-    <App />
-  </UserInfoProvider>
-);
+root.render(<App />);
