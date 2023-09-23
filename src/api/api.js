@@ -12,7 +12,7 @@ export const registerUserRoute = "/api/user/register";
 export const logInRoute = "/api/user/login";
 export const getUserRoute = "api/user/getUser";
 export const addContactRoute = "api/user/addContact";
-export const getContacts = "/api/user/getContacts";
+export const getContactsRoute = "/api/user/getContacts";
 
 // Chat Route
 export const chatRoute = "/api/chats";
