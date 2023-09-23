@@ -9,6 +9,7 @@ import Chatbody from "./components/Chatbody";
 import CallUi from "./components/CallUi";
 import VideoCall from "./components/VideoCall";
 import SignUp from "./components/SignUp";
+import LogIn from "./components/LogIn";
 
 function App() {
   const [chatActive, setChatActive] = useState(true);
@@ -16,7 +17,8 @@ function App() {
   const [notificationActive, setNotificationActive] = useState(false);
   return (
     <Box>
-      <SignUp/>
+      <LogIn/>
+      {/* <SignUp/> */}
       {/* <VideoCall/> */}
       {/* <CallUi /> */}
       {/* <NavBar />
