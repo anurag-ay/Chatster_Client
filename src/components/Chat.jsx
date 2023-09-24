@@ -4,21 +4,23 @@ import Message from "./Message";
 import { useUserInfo } from "../context/userInfoContex";
 import axios, { messagesRoute } from "../api/api";
 import formatTime from "../utils/formatTimeStamp";
+import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 
-function Chat({ selecteUserId }) {
+function Chat() {
   const userInfo = useUserInfo();
   const [messages, setMessages] = useState([]);
+  const [currentSelectedUser] = useSelectedUser();
 
   useEffect(() => {
     async function getMessages(userId) {
       const res = await axios.get(
-        `${messagesRoute}/${userId}/${selecteUserId}`
+        `${messagesRoute}/${userId}/${currentSelectedUser}`
       );
       const messageList = res.data;
       setMessages(messageList);
     }
-    if (userInfo?._id && selecteUserId) getMessages(userInfo._id);
-  }, [selecteUserId, userInfo?._id]);
+    if (userInfo?._id && currentSelectedUser) getMessages(userInfo._id);
+  }, [currentSelectedUser, userInfo?._id]);
 
   return (
     <Stack

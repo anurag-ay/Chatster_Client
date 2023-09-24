@@ -3,9 +3,11 @@ import ContactCard from "./ContactCard";
 import { Stack } from "@mui/material";
 import { useUserInfo } from "../context/userInfoContex";
 import axios, { getContactsRoute } from "../api/api";
+import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 
-export default function ChatSidebar({ handleClickContactCard }) {
+export default function ChatSidebar() {
   const userInfo = useUserInfo();
+  const [, setSelectedUser] = useSelectedUser();
 
   const [contacts, setContacts] = useState([]);
 
@@ -32,7 +34,7 @@ export default function ChatSidebar({ handleClickContactCard }) {
     >
       {contacts.map((ele, index) => (
         <ContactCard
-          onClick={() => handleClickContactCard(ele._id)}
+          onClick={() => setSelectedUser(ele._id)}
           key={index}
           name={`${ele.firstName} ${ele.lastName}`}
         />
