@@ -1,8 +1,25 @@
 import { Stack } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Message from "./Message";
+import { useUserInfo } from "../context/userInfoContex";
+import axios, { messagesRoute } from "../api/api";
+import formatTime from "../utils/formatTimeStamp";
 
-function Chat() {
+function Chat({ selecteUserId }) {
+  const userInfo = useUserInfo();
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    async function getMessages(userId) {
+      const res = await axios.get(
+        `${messagesRoute}/${userId}/${selecteUserId}`
+      );
+      const messageList = res.data;
+      setMessages(messageList);
+    }
+    if (userInfo?._id && selecteUserId) getMessages(userInfo._id);
+  }, [selecteUserId, userInfo?._id]);
+
   return (
     <Stack
       direction="column"
@@ -17,67 +34,11 @@ function Chat() {
         <Message
           key={index}
           message={msg.message}
-          timestamp={msg.timestamp}
+          timestamp={formatTime(msg.timestamp)}
           type={msg.type}
         />
       ))}
     </Stack>
   );
 }
-const messages = [
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "receive",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "receive",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "receive",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "receive",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-];
 export default Chat;

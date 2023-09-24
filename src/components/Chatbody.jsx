@@ -4,11 +4,11 @@ import Chat from "./Chat";
 import Inputbox from "./Inputbox";
 import { Box } from "@mui/material";
 
-function Chatbody() {
+function Chatbody({ selecteUserId }) {
   return (
     <Box>
       <ChatbodyNav />
-      <Chat />
+      <Chat selecteUserId={selecteUserId} />
       <Inputbox />
     </Box>
   );

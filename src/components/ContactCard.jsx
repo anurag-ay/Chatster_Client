@@ -1,9 +1,10 @@
 import React from "react";
 import { Avatar, Badge, Box, Stack, Typography } from "@mui/material";
 
-export default function ContactCard() {
+export default function ContactCard({ name, onClick }) {
   return (
     <Box
+      onClick={onClick}
       sx={{
         backgroundColor: "white",
         padding: "1em",
@@ -30,7 +31,7 @@ export default function ContactCard() {
               fontWeight: "bold",
             }}
           >
-            Name
+            {name}
           </Typography>
           <Typography
             variant="body2"
