@@ -1,15 +1,27 @@
 import { Stack } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Message from "./Message";
 import { useUserInfo } from "../context/userInfoContex";
 import axios, { messagesRoute } from "../api/api";
 import formatTime from "../utils/formatTimeStamp";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 
-function Chat() {
+function Chat({ postedChat }) {
   const userInfo = useUserInfo();
   const [messages, setMessages] = useState([]);
   const [currentSelectedUser] = useSelectedUser();
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    const messageContaner = scrollRef.current;
+    messageContaner.scrollTop = messageContaner.scrollHeight;
+  }, [messages]);
+
+  useEffect(() => {
+    if (postedChat) {
+      setMessages((prevMessages) => [...prevMessages, postedChat]);
+    }
+  }, [postedChat]);
 
   useEffect(() => {
     async function getMessages(userId) {
@@ -24,6 +36,7 @@ function Chat() {
 
   return (
     <Stack
+      ref={scrollRef}
       direction="column"
       sx={{
         p: "0 0.4em 0 0.4em",
