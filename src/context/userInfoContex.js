@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios, { authRoute } from "../api/api";
 
+import { useNavigate } from "react-router-dom";
+
 export const UserInfoContext = React.createContext(undefined);
 
 export function useUserInfo() {
@@ -9,17 +11,22 @@ export function useUserInfo() {
 
 function UserInfoProvider({ children }) {
   const [userInfo, setUserInfo] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = JSON.parse(window.localStorage.getItem("token"));
-    async function getUserInfoFromToken(token) {
-      const res = await axios.post(authRoute, { token });
-      const userData = res.data;
-      setUserInfo(userData);
-    }
+    if (token) {
+      async function getUserInfoFromToken(token) {
+        const res = await axios.post(authRoute, { token });
+        const userData = res.data;
+        setUserInfo(userData);
+      }
 
-    getUserInfoFromToken(token);
-  }, []);
+      getUserInfoFromToken(token);
+    } else {
+      navigate("/login");
+    }
+  });
 
   return (
     <UserInfoContext.Provider value={userInfo}>
