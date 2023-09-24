@@ -1,31 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios, { authRoute } from "../api/api";
 
-const UserInfoContext = React.createContext();
+export const UserInfoContext = React.createContext(undefined);
 
 export function useUserInfo() {
   return useContext(UserInfoContext);
 }
 
 function UserInfoProvider({ children }) {
-  const [userInfo, setUserInfo] = useState({});
-  const [token, setToken] = useState("");
+  const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
-    if (!token) {
-      const getToken = JSON.parse(window.localStorage.getItem("token"));
-      setToken(getToken);
-    }
-  }, [token]);
-
-  useEffect(() => {
-    async function getUserInfoFromToken() {
+    const token = JSON.parse(window.localStorage.getItem("token"));
+    async function getUserInfoFromToken(token) {
       const res = await axios.post(authRoute, { token });
       const userData = res.data;
-      setUserInfo((prevState) => ({ ...prevState, ...userData }));
+      setUserInfo(userData);
     }
-    if (token) getUserInfoFromToken();
-  }, [token]);
+
+    getUserInfoFromToken(token);
+  }, []);
 
   return (
     <UserInfoContext.Provider value={userInfo}>
