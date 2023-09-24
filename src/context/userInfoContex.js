@@ -16,17 +16,16 @@ function UserInfoProvider({ children }) {
   useEffect(() => {
     const token = JSON.parse(window.localStorage.getItem("token"));
     if (token) {
-      async function getUserInfoFromToken(token) {
+      const getUserInfoFromToken = async (token) => {
         const res = await axios.post(authRoute, { token });
         const userData = res.data;
         setUserInfo(userData);
-      }
-
+      };
       getUserInfoFromToken(token);
     } else {
       navigate("/login");
     }
-  });
+  }, [navigate]);
 
   return (
     <UserInfoContext.Provider value={userInfo}>
