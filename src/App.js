@@ -7,25 +7,32 @@ import SignUp from "./pages/SignUp";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import CurrentSelectedUserProvider from "./context/CurrentSelectedUserContext";
+import SocketContextProvider from "./context/SocketContext";
 
 function App() {
   const token = localStorage.getItem("token");
 
-  return (
-    <BrowserRouter>
+  const ChatWithContext = (
+    <SocketContextProvider>
       <UserInfoProvider>
         <CurrentSelectedUserProvider>
-          <Routes>
-            <Route
-              path="/"
-              element={token ? <ChatApp /> : <Navigate to="/login" />}
-            />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <ChatApp />
         </CurrentSelectedUserProvider>
       </UserInfoProvider>
+    </SocketContextProvider>
+  );
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={token ? ChatWithContext : <Navigate to="/login" />}
+        />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
   );
 }
