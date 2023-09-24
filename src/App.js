@@ -8,6 +8,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import CurrentSelectedUserProvider from "./context/CurrentSelectedUserContext";
 import SocketContextProvider from "./context/SocketContext";
+import LastMessageProvider from "./context/LastMessageContext";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -16,7 +17,9 @@ function App() {
     <SocketContextProvider>
       <UserInfoProvider>
         <CurrentSelectedUserProvider>
-          <ChatApp />
+          <LastMessageProvider>
+            <ChatApp />
+          </LastMessageProvider>
         </CurrentSelectedUserProvider>
       </UserInfoProvider>
     </SocketContextProvider>
