@@ -15,7 +15,7 @@ export const addContactRoute = "api/user/addContact";
 export const getContactsRoute = "/api/user/getContacts";
 
 // Chat Route
-export const chatRoute = "/api/chats";
+export const messagesRoute = "/api/chats";
 
 // Auth Route
 export const authRoute = "/api/auth";
