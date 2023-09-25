@@ -5,17 +5,40 @@ import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import { EmojiEmotions, Send } from "@mui/icons-material";
 import { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
-import { useEffect } from "react";
+import axios, { messagesRoute } from "../api/api";
+import { useUserInfo } from "../context/userInfoContex";
+import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 
-function Inputbox() {
-  const [openEmojiPicker, setopenEmojiPicker] = useState(false);
+function Inputbox({ setPostedChat }) {
   const [chat, setChat] = useState("");
+  const [openEmojiPicker, setopenEmojiPicker] = useState(false);
+  const userInfo = useUserInfo();
+  const [currentSelectedUser] = useSelectedUser();
 
-  useEffect(() => {
-    if (chat) {
-      console.log(chat);
+  async function handleChatSubmit(e) {
+    e.preventDefault();
+    if (chat && currentSelectedUser) {
+      try {
+        const payload = {
+          sender: userInfo._id,
+          receiver: currentSelectedUser,
+          content: chat,
+          status: "sent",
+        };
+        const res = await axios.post(messagesRoute, payload);
+        if (res.status === 200) setChat("");
+        const { content, createdAt } = res.data;
+        const postedChat = {
+          type: "send",
+          message: content,
+          timestamp: createdAt,
+        };
+        setPostedChat(postedChat);
+      } catch (err) {
+        console.log(err);
+      }
     }
-  }, [chat]);
+  }
 
   function handleEmojiClick(EmojiObj) {
     setChat((prevChat) => prevChat + EmojiObj.emoji);
@@ -41,26 +64,39 @@ function Inputbox() {
           </IconButton>
         </Stack>
 
-        <TextField
-          autoComplete="false"
-          value={chat}
-          onChange={(e) => setChat(e.target.value)}
-          fullWidth
-          variant="outlined"
-        />
-        <Box
-          sx={{
-            borderRadius: "100%",
-            backgroundColor: "#1976d2",
-            p: "0.7em",
-            ":hover": {
-              backgroundColor: "#61b0ff",
-              cursor: "pointer",
-            },
-          }}
+        <Stack
+          component="form"
+          onSubmit={handleChatSubmit}
+          spacing="0.5em"
+          flex="1"
+          direction="row"
         >
-          <Send />
-        </Box>
+          <TextField
+            autoComplete="false"
+            value={chat}
+            onChange={(e) => setChat(e.target.value)}
+            fullWidth
+            variant="outlined"
+          />
+          <Stack
+            component="button"
+            alignItems="center"
+            justifyContent="center"
+            sx={{
+              borderRadius: "100%",
+              border: "0",
+              height: "4em",
+              width: "4em",
+              backgroundColor: "#1976d2",
+              ":hover": {
+                backgroundColor: "#61b0ff",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <Send />
+          </Stack>
+        </Stack>
       </Stack>
     </>
   );

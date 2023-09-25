@@ -1,22 +1,16 @@
 import { Box, Stack } from "@mui/material";
 import ChatSidebar from "../components/ChatSidebar";
-
 import NavBar from "../components/NavBar";
 import SidebarItems from "../components/SidebarItems";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CallSidebar from "../components/CallSidebar";
 import Chatbody from "../components/Chatbody";
 // import CallUi from "./components/CallUi";
-import { io } from "socket.io-client";
 
 function ChatApp() {
   const [chatActive, setChatActive] = useState(true);
   const [callActive, setCallActive] = useState(false);
   const [notificationActive, setNotificationActive] = useState(false);
-
-  useEffect(() => {
-    io("http://localhost:5000");
-  }, []);
 
   return (
     <Box>
