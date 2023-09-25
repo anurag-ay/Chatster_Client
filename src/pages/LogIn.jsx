@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, Box, Stack, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
+import axios, { logInRoute } from "../api/api";
 
 function LogIn() {
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const [authWith, setauthWith] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const payload = {
+      authWith,
+      password,
+    };
+    try {
+      const res = await axios.post(logInRoute, payload);
+      if (res.status === 200) {
+        const token = res.data;
+        localStorage.setItem("token", token);
+        navigate("/");
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   function handleClickSignup() {
@@ -54,29 +68,31 @@ function LogIn() {
               <Grid container gap="1em">
                 <Grid item xs={12}>
                   <TextField
+                    name="userName"
+                    label="User Name or Email"
+                    value={authWith}
+                    onChange={(e) => setauthWith(e.target.value)}
                     required
                     fullWidth
-                    id="userName"
-                    label="User Name or Email"
-                    name="userName"
                     autoFocus
                   />
                 </Grid>
 
                 <Grid item xs={12}>
                   <TextField
-                    required
-                    fullWidth
                     name="password"
                     label="Password"
                     type="password"
-                    id="password"
-                    autoComplete="new-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    fullWidth
                   />
                 </Grid>
               </Grid>
               <Stack alignItems="center">
                 <Button
+                  type="submit"
                   sx={{
                     mt: "1em",
                     color: "white",
