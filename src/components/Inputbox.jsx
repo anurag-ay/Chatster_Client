@@ -8,12 +8,14 @@ import EmojiPicker from "emoji-picker-react";
 import axios, { messagesRoute } from "../api/api";
 import { useUserInfo } from "../context/userInfoContex";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
+import { useSocket } from "../context/SocketContext";
 
 function Inputbox({ setPostedChat }) {
   const [chat, setChat] = useState("");
   const [openEmojiPicker, setopenEmojiPicker] = useState(false);
   const userInfo = useUserInfo();
   const [currentSelectedUser] = useSelectedUser();
+  const socket = useSocket();
 
   async function handleChatSubmit(e) {
     e.preventDefault();
@@ -27,12 +29,19 @@ function Inputbox({ setPostedChat }) {
         };
         const res = await axios.post(messagesRoute, payload);
         if (res.status === 200) setChat("");
-        const { content, createdAt } = res.data;
+        const { content, createdAt, receiver } = res.data;
         const postedChat = {
           type: "send",
           message: content,
           timestamp: createdAt,
         };
+        if (socket) {
+          const realTimeChat = {
+            ...postedChat,
+            to: receiver,
+          };
+          socket.emit("sendMessage", realTimeChat);
+        }
         setPostedChat(postedChat);
       } catch (err) {
         console.log(err);
