@@ -1,31 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios, { authRoute } from "../api/api";
 
-const UserInfoContext = React.createContext();
+import { useNavigate } from "react-router-dom";
+
+export const UserInfoContext = React.createContext(undefined);
 
 export function useUserInfo() {
   return useContext(UserInfoContext);
 }
 
 function UserInfoProvider({ children }) {
-  const [userInfo, setUserInfo] = useState({});
-  const [token, setToken] = useState("");
+  const [userInfo, setUserInfo] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
-      const getToken = JSON.parse(window.localStorage.getItem("token"));
-      setToken(getToken);
+    const token = JSON.parse(window.localStorage.getItem("token"));
+    if (token) {
+      const getUserInfoFromToken = async (token) => {
+        const res = await axios.post(authRoute, { token });
+        const userData = res.data;
+        setUserInfo(userData);
+      };
+      getUserInfoFromToken(token);
+    } else {
+      navigate("/login");
     }
-  }, [token]);
-
-  useEffect(() => {
-    async function getUserInfoFromToken() {
-      const res = await axios.post(authRoute, { token });
-      const userData = res.data;
-      setUserInfo((prevState) => ({ ...prevState, ...userData }));
-    }
-    if (token) getUserInfoFromToken();
-  }, [token]);
+  }, [navigate]);
 
   return (
     <UserInfoContext.Provider value={userInfo}>

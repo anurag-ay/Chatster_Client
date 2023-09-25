@@ -1,10 +1,42 @@
 import { Stack } from "@mui/material";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Message from "./Message";
+import { useUserInfo } from "../context/userInfoContex";
+import axios, { messagesRoute } from "../api/api";
+import formatTime from "../utils/formatTimeStamp";
+import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 
-function Chat() {
+function Chat({ postedChat }) {
+  const userInfo = useUserInfo();
+  const [messages, setMessages] = useState([]);
+  const [currentSelectedUser] = useSelectedUser();
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    const messageContaner = scrollRef.current;
+    messageContaner.scrollTop = messageContaner.scrollHeight;
+  }, [messages]);
+
+  useEffect(() => {
+    if (postedChat) {
+      setMessages((prevMessages) => [...prevMessages, postedChat]);
+    }
+  }, [postedChat]);
+
+  useEffect(() => {
+    async function getMessages(userId) {
+      const res = await axios.get(
+        `${messagesRoute}/${userId}/${currentSelectedUser}`
+      );
+      const messageList = res.data;
+      setMessages(messageList);
+    }
+    if (userInfo?._id && currentSelectedUser) getMessages(userInfo._id);
+  }, [currentSelectedUser, userInfo?._id]);
+
   return (
     <Stack
+      ref={scrollRef}
       direction="column"
       sx={{
         p: "0 0.4em 0 0.4em",
@@ -17,67 +49,11 @@ function Chat() {
         <Message
           key={index}
           message={msg.message}
-          timestamp={msg.timestamp}
+          timestamp={formatTime(msg.timestamp)}
           type={msg.type}
         />
       ))}
     </Stack>
   );
 }
-const messages = [
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "receive",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "receive",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "receive",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "receive",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-  {
-    message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, quia.",
-    type: "send",
-    timestamp: "10:50 AM",
-  },
-];
 export default Chat;
