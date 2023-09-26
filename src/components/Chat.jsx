@@ -5,12 +5,22 @@ import { useUserInfo } from "../context/userInfoContex";
 import axios, { messagesRoute } from "../api/api";
 import formatTime from "../utils/formatTimeStamp";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
+import { useSocket } from "../context/SocketContext";
 
 function Chat({ postedChat }) {
   const userInfo = useUserInfo();
   const [messages, setMessages] = useState([]);
   const [currentSelectedUser] = useSelectedUser();
   const scrollRef = useRef();
+  const socket = useSocket();
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("recieveMessage", (data) => {
+        setMessages((prevMessages) => [...prevMessages, data]);
+      });
+    }
+  }, [socket]);
 
   useEffect(() => {
     const messageContaner = scrollRef.current;
