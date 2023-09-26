@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import CurrentSelectedUserProvider from "./context/CurrentSelectedUserContext";
 import SocketContextProvider from "./context/SocketContext";
 import LastMessageProvider from "./context/LastMessageContext";
+import ContactProvider from "./context/ContactContext";
 
 function App() {
   const [token] = useState(() => {
@@ -18,11 +19,13 @@ function App() {
   const ChatWithContext = (
     <UserInfoProvider>
       <SocketContextProvider>
-        <CurrentSelectedUserProvider>
-          <LastMessageProvider>
-            <ChatApp />
-          </LastMessageProvider>
-        </CurrentSelectedUserProvider>
+        <ContactProvider>
+          <CurrentSelectedUserProvider>
+            <LastMessageProvider>
+              <ChatApp />
+            </LastMessageProvider>
+          </CurrentSelectedUserProvider>
+        </ContactProvider>
       </SocketContextProvider>
     </UserInfoProvider>
   );
