@@ -5,12 +5,21 @@ import SidebarItems from "../components/SidebarItems";
 import { useState } from "react";
 import CallSidebar from "../components/CallSidebar";
 import Chatbody from "../components/Chatbody";
+import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 // import CallUi from "./components/CallUi";
+import WelcomeGif from "../assets/images/welcome.gif";
 
 function ChatApp() {
   const [chatActive, setChatActive] = useState(true);
   const [callActive, setCallActive] = useState(false);
   const [notificationActive, setNotificationActive] = useState(false);
+  const [selectedUser] = useSelectedUser();
+
+  const Welcome = (
+    <Stack alignItems="center" justifyContent="center" sx={{ height: "100%" }}>
+      <img src={WelcomeGif} alt="Welcome Gif" />
+    </Stack>
+  );
 
   return (
     <Box>
@@ -34,7 +43,7 @@ function ChatApp() {
           {callActive ? <CallSidebar /> : null}
         </Box>
         <Box flex="2" maxWidth={"73.6vw"}>
-          <Chatbody />
+          {selectedUser ? <Chatbody /> : Welcome}
         </Box>
       </Stack>
     </Box>

@@ -1,18 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, Box, Stack, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
+import axios, { registerUserRoute } from "../api/api";
 
 function SignUp() {
+  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    const payload = {
+      userName,
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+
+    try {
+      await axios.post(registerUserRoute, payload);
+      setUserName("");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   function handleClickLogin() {
@@ -97,62 +122,70 @@ function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="userName"
                   label="User Name"
                   name="userName"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
                   autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6} alignItems={"center"}>
                 <TextField
-                  autoComplete="given-name"
                   name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
                   label="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  fullWidth
+                  required
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  required
-                  fullWidth
-                  id="lastName"
                   label="Last Name"
                   name="lastName"
-                  autoComplete="family-name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                  fullWidth
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
-                  fullWidth
                   label="Email Address"
                   name="email"
-                  autoComplete="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  fullWidth
+                  required
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
-                  fullWidth
                   name="password"
                   label="Password"
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  fullWidth
+                  required
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
-                  fullWidth
                   name="Confirm password"
                   label="Confirm Password"
-                  type="Confirm password"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  fullWidth
                 />
               </Grid>
             </Grid>
             <Stack alignItems="center">
               <Button
+                type="submit"
                 sx={{
                   mt: "1em",
                   color: "white",

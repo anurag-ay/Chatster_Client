@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import ChatApp from "./pages/ChatApp";
 import UserInfoProvider from "./context/userInfoContex";
@@ -11,18 +11,20 @@ import SocketContextProvider from "./context/SocketContext";
 import LastMessageProvider from "./context/LastMessageContext";
 
 function App() {
-  const token = localStorage.getItem("token");
+  const [token] = useState(() => {
+    return localStorage.getItem("token");
+  });
 
   const ChatWithContext = (
-    <SocketContextProvider>
-      <UserInfoProvider>
+    <UserInfoProvider>
+      <SocketContextProvider>
         <CurrentSelectedUserProvider>
           <LastMessageProvider>
             <ChatApp />
           </LastMessageProvider>
         </CurrentSelectedUserProvider>
-      </UserInfoProvider>
-    </SocketContextProvider>
+      </SocketContextProvider>
+    </UserInfoProvider>
   );
 
   return (

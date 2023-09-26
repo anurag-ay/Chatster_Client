@@ -14,7 +14,7 @@ function UserInfoProvider({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = JSON.parse(window.localStorage.getItem("token"));
+    const token = localStorage.getItem("token");
     if (token) {
       const getUserInfoFromToken = async (token) => {
         const res = await axios.post(authRoute, { token });
