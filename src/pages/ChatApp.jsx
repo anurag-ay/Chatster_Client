@@ -15,6 +15,9 @@ function ChatApp() {
   const [notificationActive, setNotificationActive] = useState(false);
   const [selectedUser] = useSelectedUser();
 
+  const [searchText, setSearchText] = useState("");
+  const [searchedUserArray, setsearchedUserArray] = useState([]);
+
   const Welcome = (
     <Stack alignItems="center" justifyContent="center" sx={{ height: "100%" }}>
       <img src={WelcomeGif} alt="Welcome Gif" />
@@ -32,6 +35,9 @@ function ChatApp() {
           }}
         >
           <SidebarItems
+            setsearchedUserArray={setsearchedUserArray}
+            setSearchText={setSearchText}
+            searchText={searchText}
             chatActive={chatActive}
             setChatActive={setChatActive}
             callActive={callActive}
@@ -39,7 +45,13 @@ function ChatApp() {
             notificationActive={notificationActive}
             setNotificationActive={setNotificationActive}
           />
-          {chatActive ? <ChatSidebar /> : null}
+          {chatActive ? (
+            <ChatSidebar
+              searchText={searchText}
+              setSearchText={setSearchText}
+              searchedUserArray={searchedUserArray}
+            />
+          ) : null}
           {callActive ? <CallSidebar /> : null}
         </Box>
         <Box flex="2" maxWidth={"73.6vw"}>

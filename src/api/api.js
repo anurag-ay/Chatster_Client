@@ -14,6 +14,9 @@ export const getUserRoute = "api/user/getUser";
 export const addContactRoute = "api/user/addContact";
 export const getContactsRoute = "/api/user/getContacts";
 
+// SearchUserRoute
+export const searchUserRoute = "/api/searchUser";
+
 // Chat Route
 export const messagesRoute = "/api/chats";
 
