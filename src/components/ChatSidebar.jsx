@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ContactCard from "./ContactCard";
 import { Stack } from "@mui/material";
-import { useUserInfo } from "../context/userInfoContex";
-import axios, { getContactsRoute } from "../api/api";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
+import SearchContact from "./SearchContact";
+import { useContacts } from "../context/ContactContext";
 
-export default function ChatSidebar() {
-  const userInfo = useUserInfo();
+export default function ChatSidebar({
+  searchText,
+  searchedUserArray,
+  setSearchText,
+}) {
   const [, setSelectedUser] = useSelectedUser();
-
-  const [contacts, setContacts] = useState([]);
-
-  useEffect(() => {
-    async function getContacts(_id) {
-      const res = await axios.get(`${getContactsRoute}/${_id}`);
-      const contactsList = res.data;
-      setContacts(contactsList);
-    }
-    const _id = userInfo?._id;
-    if (_id) getContacts(_id);
-  }, [userInfo]);
+  const [contacts] = useContacts([]);
 
   return (
     <Stack
@@ -32,13 +24,24 @@ export default function ChatSidebar() {
         minWidth: "25vw",
       }}
     >
-      {contacts.map((ele, index) => (
-        <ContactCard
-          onClick={() => setSelectedUser(ele._id)}
-          key={index}
-          name={`${ele.firstName} ${ele.lastName}`}
-        />
-      ))}
+      {searchText
+        ? searchedUserArray.map((result, index) => (
+            <SearchContact
+              slectedSearchedContact={result}
+              setSearchText={setSearchText}
+              key={index}
+              id={result._id}
+              userName={result.userName}
+              name={`${result.firstName} ${result.lastName}`}
+            />
+          ))
+        : contacts.map((ele, index) => (
+            <ContactCard
+              onClick={() => setSelectedUser(ele._id)}
+              key={index}
+              name={`${ele.firstName} ${ele.lastName}`}
+            />
+          ))}
     </Stack>
   );
 }

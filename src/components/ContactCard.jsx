@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Badge, Box, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Stack, Typography } from "@mui/material";
 
 export default function ContactCard({ name, onClick }) {
   return (
@@ -10,18 +10,12 @@ export default function ContactCard({ name, onClick }) {
         padding: "1em",
         "&:hover": {
           backgroundColor: "#fafafa",
+          cursor: "pointer",
         },
       }}
     >
       <Stack direction="row" spacing="0.5em" alignItems="center">
-        <Badge
-          overlap="circular"
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          variant="dot"
-          color="success"
-        >
-          <Avatar sx={{ height: "2.5em", width: "2.5em" }}>H</Avatar>
-        </Badge>
+        <Avatar sx={{ height: "2.5em", width: "2.5em" }}>H</Avatar>
 
         <Stack flex="2 1 auto">
           <Typography
