@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios, { authRoute } from "../api/api";
+import axios, { decodeTokenRoute } from "../api/api";
 
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ function UserInfoProvider({ children }) {
     const token = localStorage.getItem("token");
     if (token) {
       const getUserInfoFromToken = async (token) => {
-        const res = await axios.post(authRoute, { token });
+        const res = await axios.post(decodeTokenRoute, { token });
         const userData = res.data;
         setUserInfo(userData);
       };
