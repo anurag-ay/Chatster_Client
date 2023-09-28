@@ -11,8 +11,19 @@ function ChatbodyNav() {
   const [isOnline, setIsOnline] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [newUserAdded, setNewUserAdded] = useState("");
-
+  const [typing, setTyping] = useState("");
   const socket = useSocket();
+
+  useEffect(() => {
+    socket.on("isTyping", ({ currentSelectedUser, isTyping }) => {
+      if (selectedUser === currentSelectedUser) {
+        isTyping ? setTyping("typing...") : setTyping(null);
+      } else {
+        setTyping(null);
+      }
+    });
+  }, [socket, selectedUser]);
+
   useEffect(() => {
     if (socket) {
       socket.on("userConnectDisconnect", (data) => {
@@ -67,7 +78,7 @@ function ChatbodyNav() {
           <Typography variant="body1" sx={{ fontSize: "1em" }}>
             {displayName}
           </Typography>
-          <Typography variant="body2">{isOnline}</Typography>
+          <Typography variant="body2">{typing ? typing : isOnline}</Typography>
         </Box>
       </Stack>
       <Stack spacing={2} direction="row" mr="1em">
