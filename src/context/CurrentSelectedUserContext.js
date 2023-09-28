@@ -7,7 +7,7 @@ export function useSelectedUser() {
 }
 
 export default function CurrentSelectedUserProvider({ children }) {
-  const [currentSelectedUser, setCurrentSelectedUser] = useState(undefined);
+  const [currentSelectedUser, setCurrentSelectedUser] = useState(null);
 
   function setSelectedUser(id) {
     setCurrentSelectedUser(id);

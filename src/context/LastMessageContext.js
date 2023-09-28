@@ -7,7 +7,7 @@ export function useLastMessage() {
 }
 
 export default function LastMessageProvider({ children }) {
-  const [lastMessage, setLastMessage] = useState("");
+  const [lastMessage, setLastMessage] = useState(null);
   return (
     <LastMessageContext.Provider value={[lastMessage, setLastMessage]}>
       {children}

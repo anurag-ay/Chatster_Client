@@ -20,7 +20,7 @@ export default function ContactProvider({ children }) {
     }
     const _id = userInfo?._id;
     if (_id) getContacts(_id);
-  }, [userInfo]);
+  }, [userInfo?._id]);
   return (
     <ContactContext.Provider value={[contacts, setContacts]}>
       {children}
