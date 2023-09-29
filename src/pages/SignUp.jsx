@@ -77,7 +77,7 @@ function SignUp() {
           paddingRight={"2rem"}
           sx={{
             backgroundColor: "#FF4262",
-            boxShadow: "red -5px 5px, red -10px 10px,  red  -15px 15px, red  -20px 20px, red  -25px 25px"
+            boxShadow: "#ff4532 -5px 5px, #ff4532 -10px 10px,  #ff4532  -15px 15px, #ff4532  -20px 20px, #ff4532  -25px 25px"
           }}
         >
           <Typography variant="h2">Welcome Back!</Typography>
@@ -95,9 +95,10 @@ function SignUp() {
               width: "10em",
               borderRadius: "2em",
               "&:hover": {
-                color: "white",
+                color: "red",
                 border: "0.1em solid white",
                 backgroundColor: "#ff4532",
+                boxShadow: "white 0px -23px 25px 0px inset, white 0px -36px 30px 0px inset, white 0px -79px 40px 0px inset,white 0px 2px 1px,#ff4532 0px 4px 2px, white 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
               },
             }}
             variant="outlined"
@@ -118,7 +119,7 @@ function SignUp() {
           border: "2px solid red",
           backgroundColor: "white",
           // boxShadow:" red 0px 5px 15px",
-          boxShadow: " red  5px 5px,  red  10px 10px, red  15px 15px,  red  20px 20px,  red  25px 25px",
+          boxShadow: " #ff4532  5px 5px,  #ff4532  10px 10px, #ff4532  15px 15px,  #ff4532  20px 20px,  #ff4532  25px 25px",
           color:"#FF4262"
           
         }}
@@ -207,6 +208,7 @@ function SignUp() {
                     color: "white",
                     border: "0.1em solid white",
                     backgroundColor: "#ff4532",
+                    boxShadow: "#ff4532 0px -23px 25px 0px inset, #ff4532 0px -36px 30px 0px inset, #ff4532 0px -79px 40px 0px inset,#ff4532 0px 2px 1px,#ff4532 0px 4px 2px, #ff4532 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
                   },
                 }}
                 variant="outlined"
