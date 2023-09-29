@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 import React, { useContext, useEffect, useRef } from "react";
 import { useUserInfo } from "./userInfoContex";
+import { BASE_URL } from "../api/api";
 
 const SocketContext = React.createContext(undefined);
 
@@ -13,11 +14,11 @@ export default function SocketContextProvider({ children }) {
   const userInfo = useUserInfo();
 
   useEffect(() => {
-    socket.current = io("http://localhost:5000");
+    socket.current = io(BASE_URL);
   }, []);
 
   useEffect(() => {
-    if (userInfo?._id) socket.current.emit("addUser", userInfo._id);
+    if (userInfo?._id && socket) socket.current.emit("addUser", userInfo._id);
   }, [userInfo?._id]);
 
   return (

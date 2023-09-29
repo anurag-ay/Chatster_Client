@@ -45,7 +45,7 @@ export default function SidebarItems(props) {
   return (
     <Box>
       {/* Search */}
-      <Box component="form" sx={{ padding: "0.5em" }}>
+      <Box component="form" id="search-input" sx={{ padding: "0.5em" }}>
         <Paper
           sx={{
             display: "flex",

@@ -21,4 +21,4 @@ export const searchUserRoute = "/api/searchUser";
 export const messagesRoute = "/api/chats";
 
 // Auth Route
-export const authRoute = "/api/auth";
+export const decodeTokenRoute = "/api/decodeToken";

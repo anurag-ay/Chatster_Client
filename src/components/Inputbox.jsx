@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Stack, TextField, IconButton } from "@mui/material";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
@@ -11,11 +11,20 @@ import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 import { useSocket } from "../context/SocketContext";
 
 function Inputbox({ setPostedChat }) {
+  const [messageInputFocus, setMessageInputFocus] = useState(false);
   const [chat, setChat] = useState("");
   const [openEmojiPicker, setopenEmojiPicker] = useState(false);
   const userInfo = useUserInfo();
   const [currentSelectedUser] = useSelectedUser();
   const socket = useSocket();
+
+  useEffect(() => {
+    socket.emit("typing", {
+      from: userInfo._id,
+      to: currentSelectedUser,
+      isTyping: messageInputFocus,
+    });
+  }, [messageInputFocus, currentSelectedUser, socket, userInfo?._id]);
 
   async function handleChatSubmit(e) {
     e.preventDefault();
@@ -81,6 +90,8 @@ function Inputbox({ setPostedChat }) {
           direction="row"
         >
           <TextField
+            onFocus={() => setMessageInputFocus(true)}
+            onBlur={() => setMessageInputFocus(false)}
             autoComplete="false"
             value={chat}
             onChange={(e) => setChat(e.target.value)}
