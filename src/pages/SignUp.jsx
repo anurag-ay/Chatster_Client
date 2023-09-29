@@ -51,6 +51,8 @@ function SignUp() {
       justifyContent={"center"}
       width={"100vw"}
       height={"100vh"}
+
+      
     >
       <Box
         display={"flex"}
@@ -59,6 +61,7 @@ function SignUp() {
         sx={{
           color: "white",
           backgroundColor: "gray",
+          
         }}
       >
         <Stack
@@ -74,6 +77,7 @@ function SignUp() {
           paddingRight={"2rem"}
           sx={{
             backgroundColor: "#FF4262",
+            boxShadow:" red 0px 5px 15px"
           }}
         >
           <Typography variant="h2">Welcome Back!</Typography>
@@ -109,14 +113,18 @@ function SignUp() {
         width={"35vw"}
         height={"80vh"}
         alignItems={"center"}
+      
         sx={{
           border: "2px solid red",
           backgroundColor: "white",
+          boxShadow:" red 0px 5px 15px",
+          color:"#FF4262"
+          
         }}
       >
         <Stack direction={"column"} spacing={2} alignItems={"center"} p="1em">
-          <Typography variant="h3">Create Account</Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Typography variant="h3" >Create Account</Typography>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, color:"#FF4262"}}>
             <Grid container columnSpacing="0.5em" rowSpacing="1em">
               <Grid item xs={12}>
                 <TextField
