@@ -77,7 +77,7 @@ function SignUp() {
           paddingRight={"2rem"}
           sx={{
             backgroundColor: "#FF4262",
-            boxShadow:" red 0px 5px 15px"
+            boxShadow: "red -5px 5px, red -10px 10px,  red  -15px 15px, red  -20px 20px, red  -25px 25px"
           }}
         >
           <Typography variant="h2">Welcome Back!</Typography>
@@ -117,7 +117,8 @@ function SignUp() {
         sx={{
           border: "2px solid red",
           backgroundColor: "white",
-          boxShadow:" red 0px 5px 15px",
+          // boxShadow:" red 0px 5px 15px",
+          boxShadow: " red  5px 5px,  red  10px 10px, red  15px 15px,  red  20px 20px,  red  25px 25px",
           color:"#FF4262"
           
         }}
