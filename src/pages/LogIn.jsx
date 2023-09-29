@@ -48,7 +48,7 @@ function LogIn() {
         sx={{
           color: "white",
           backgroundColor: "gray",
-          boxShadow: "0em 0em  2em #313131",
+          // boxShadow: "0em 0em  2em #313131",
         }}
       >
         {/* Sign */}
@@ -59,8 +59,10 @@ function LogIn() {
           direction={"column"}
           alignItems={"center"}
           sx={{
+            border: "2px solid red",
             backgroundColor: "white",
             p: "1em",
+            boxShadow: "#ff4532 -5px 5px, #ff4532 -10px 10px,  #ff4532  -15px 15px, #ff4532  -20px 20px, #ff4532  -25px 25px"
           }}
         >
           <Box m="3em">
@@ -106,7 +108,8 @@ function LogIn() {
                     "&:hover": {
                       color: "white",
                       border: "0.1em solid white",
-                      backgroundColor: "#ff4532",
+                      // backgroundColor: "#ff4532",
+                      boxShadow: "#ff4532 0px -23px 25px 0px inset, #ff4532 0px -36px 30px 0px inset, #ff4532 0px -79px 40px 0px inset,#ff4532 0px 2px 1px,#ff4532 0px 4px 2px, #ff4532 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
                     },
                   }}
                   variant="outlined"
@@ -131,6 +134,7 @@ function LogIn() {
             paddingRight={"2rem"}
             sx={{
               backgroundColor: "#FF4262",
+              boxShadow: " #ff4532  5px 5px,  #ff4532  10px 10px, #ff4532  15px 15px,  #ff4532  20px 20px,  #ff4532  25px 25px",
             }}
           >
             <Stack alignItems={"center"} direction={"column"} spacing={5}>
@@ -149,9 +153,10 @@ function LogIn() {
                   width: "10em",
                   borderRadius: "2em",
                   "&:hover": {
-                    color: "white",
+                    color: "red",
                     border: "0.1em solid white",
                     backgroundColor: "#ff4532",
+                    boxShadow: "white 0px -23px 25px 0px inset, white 0px -36px 30px 0px inset, white 0px -79px 40px 0px inset,white 0px 2px 1px,#ff4532 0px 4px 2px, white 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
                   },
                 }}
                 variant="outlined"
