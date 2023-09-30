@@ -12,7 +12,7 @@ export default function ChatSidebar({
 }) {
   const [, setSelectedUser] = useSelectedUser();
   const [contacts] = useContacts([]);
-
+ 
   return (
     <Stack
       flex="1"
@@ -37,7 +37,9 @@ export default function ChatSidebar({
           ))
         : contacts.map((ele, index) => (
             <ContactCard
-              onClick={() => setSelectedUser(ele._id)}
+             
+              onClick={() => setSelectedUser(ele._id) 
+                }
               key={index}
               name={`${ele.firstName} ${ele.lastName}`}
             />

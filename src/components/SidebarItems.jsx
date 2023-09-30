@@ -43,13 +43,15 @@ export default function SidebarItems(props) {
   }, [searchText, setsearchedUserArray, userInfo]);
 
   return (
-    <Box>
+    <Box
+    sx={{backgroundColor:"#288672"}}
+    >
       {/* Search */}
       <Box component="form" id="search-input" sx={{ padding: "0.5em" }}>
         <Paper
           sx={{
             display: "flex",
-            alignItems: "center",
+            alignItems: "center",backgroundColor:"#BBF1E5"
           }}
         >
           <InputBase
@@ -118,7 +120,7 @@ export default function SidebarItems(props) {
           )}
         </IconButton>
       </Stack>
-      <Divider orientation="horizontal" />
+      <Divider orientation="horizontal" color="#93E8D5" />
     </Box>
   );
 }
