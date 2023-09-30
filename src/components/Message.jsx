@@ -7,7 +7,7 @@ function Message({ message, type, timestamp }) {
     <Box m={type === "receive" ? "0.5em auto 0.5em 0" : "0.5em 0 0.5em auto"}>
       <Box
         maxWidth={"25vw"}
-        backgroundColor={type === "receive" ? "lightgreen" : "lightgrey"}
+        backgroundColor={type === "receive" ? "#3DC3A5" : "white"}
         sx={{
           borderRadius: "0.5em",
           padding: "0.3em 0.3em 0 0.4em ",

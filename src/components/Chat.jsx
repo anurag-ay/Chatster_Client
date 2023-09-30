@@ -51,7 +51,7 @@ function Chat({ postedChat }) {
       sx={{
         p: "0 0.4em 0 0.4em",
         height: "75vh",
-        backgroundColor: "gray",
+        backgroundColor: "#BBF1E5",
         overflowY: "scroll",
       }}
     >
