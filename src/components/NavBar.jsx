@@ -24,7 +24,7 @@ export default function NavBar() {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" sx={{backgroundColor:"#0C372D"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* PC Nav */}
