@@ -37,7 +37,7 @@ function Inputbox({ setPostedChat }) {
           status: "sent",
         };
         const res = await axios.post(messagesRoute, payload);
-        if (res.status === 200) setChat("");
+        setChat("");
         const { content, createdAt, receiver } = res.data;
         const postedChat = {
           type: "send",
@@ -64,7 +64,9 @@ function Inputbox({ setPostedChat }) {
 
   return (
     <>
-      <Stack direction="row" alignItems="center" spacing="0.5em" p="0.2em">
+      <Stack direction="row" alignItems="center" spacing="0.5em" p="0.2em"
+        sx={{backgroundColor:"#BBF1E5"}}
+      >
         <Stack direction={"row"} spacing={3}>
           <IconButton>
             <AttachFileIcon />
@@ -107,9 +109,9 @@ function Inputbox({ setPostedChat }) {
               border: "0",
               height: "4em",
               width: "4em",
-              backgroundColor: "#1976d2",
+              backgroundColor: "#288772",
               ":hover": {
-                backgroundColor: "#61b0ff",
+                boxShadow: "#288772 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
                 cursor: "pointer",
               },
             }}
