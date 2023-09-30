@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 
 export default function ContactCard({ name, onClick }) {
+  
+
   return (
     <Box
       onClick={onClick}
+      backgroundColor={"#288672"}
       sx={{
-        backgroundColor: "#288772",
         padding: "1em",
         color:"white",
         "&:hover": {

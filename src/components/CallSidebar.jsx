@@ -6,6 +6,7 @@ export default function CallSidebar() {
   return (
     <Stack
       flex="1"
+      
       spacing={1}
       sx={{
         p: "1em 1em 0em 1em",

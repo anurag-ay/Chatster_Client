@@ -64,14 +64,31 @@ function Inputbox({ setPostedChat }) {
 
   return (
     <>
+   
       <Stack direction="row" alignItems="center" spacing="0.5em" p="0.2em"
-        sx={{backgroundColor:"#BBF1E5"}}
+         sx={{backgroundColor:"#288672"}}
       >
-        <Stack direction={"row"} spacing={3}>
-          <IconButton>
+        <Stack direction={"row"} spacing={3}
+       
+        >
+          <IconButton
+          sx={{
+            ":hover": {
+              boxShadow: "#BBF1E5 0px 2px 4px,#BBF1E5 0px 7px 13px -3px, #BBF1E5 0px -3px 0px inset",
+              cursor: "pointer",
+            },
+          }}
+          >
             <AttachFileIcon />
           </IconButton>
-          <IconButton onClick={() => setopenEmojiPicker(!openEmojiPicker)}>
+          <IconButton onClick={() => setopenEmojiPicker(!openEmojiPicker)}
+                    sx={{
+                      ":hover": {
+                        boxShadow: "#BBF1E5 0px 2px 4px,#BBF1E5 0px 7px 13px -3px, #BBF1E5 0px -3px 0px inset",
+                        cursor: "pointer",
+                      },
+                    }}
+          >
             <EmojiEmotions />
           </IconButton>
           <Box position="absolute" sx={{ bottom: "9vh", left: "30vw" }}>
@@ -79,7 +96,14 @@ function Inputbox({ setPostedChat }) {
               <EmojiPicker onEmojiClick={handleEmojiClick} />
             ) : null}
           </Box>
-          <IconButton>
+          <IconButton
+                    sx={{
+                      ":hover": {
+                        boxShadow: "#BBF1E5 0px 2px 4px,#BBF1E5 0px 7px 13px -3px, #BBF1E5 0px -3px 0px inset",
+                        cursor: "pointer",
+                      },
+                    }}
+          >
             <KeyboardVoiceIcon />
           </IconButton>
         </Stack>
@@ -92,6 +116,10 @@ function Inputbox({ setPostedChat }) {
           direction="row"
         >
           <TextField
+          sx={{
+            backgroundColor:"#BBF1E5"
+          }}
+          
             onFocus={() => setMessageInputFocus(true)}
             onBlur={() => setMessageInputFocus(false)}
             autoComplete="false"
@@ -99,6 +127,7 @@ function Inputbox({ setPostedChat }) {
             onChange={(e) => setChat(e.target.value)}
             fullWidth
             variant="outlined"
+            
           />
           <Stack
             component="button"
