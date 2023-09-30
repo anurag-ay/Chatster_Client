@@ -64,9 +64,10 @@ function ChatbodyNav() {
         maxWidth: "73vw",
         minWidth: "25vw",
         padding: "0.2em",
-        backgroundColor: "#F9F9FA",
+        backgroundColor: "#288772",
         alignItems: "center",
         justifyContent: "space-between",
+        color:"white"
       }}
     >
       <Stack direction="row" spacing="1em" alignItems="center">

@@ -31,7 +31,7 @@ function ChatApp() {
       <Stack direction="row" mt="4em">
         <Box
           sx={{
-            backgroundColor: "#fafafa",
+            backgroundColor: "#BBF1E5",
           }}
         >
           <SidebarItems
