@@ -11,6 +11,7 @@ export default function SearchContact({
   name,
   setSearchText,
   slectedSearchedContact,
+  avatar,
 }) {
   const userInfo = useUserInfo();
   const [contacts, setContact] = useContacts();
@@ -58,7 +59,10 @@ export default function SearchContact({
       }}
     >
       <Stack direction="row" spacing="0.5em" alignItems="center">
-        <Avatar sx={{ height: "2.5em", width: "2.5em" }}>H</Avatar>
+        <Avatar
+          src={avatar && `data:image/svg+xml;base64,${avatar}`}
+          sx={{ height: "2.5em", width: "2.5em" }}
+        />
 
         <Stack flex="2 1 auto">
           <Typography

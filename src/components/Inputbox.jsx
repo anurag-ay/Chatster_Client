@@ -115,6 +115,7 @@ function Inputbox({ setPostedChat }) {
 
         <Stack
           component="form"
+          autoComplete="off"
           onSubmit={handleChatSubmit}
           spacing="0.5em"
           flex="1"
@@ -126,7 +127,6 @@ function Inputbox({ setPostedChat }) {
             }}
             onFocus={() => setMessageInputFocus(true)}
             onBlur={() => setMessageInputFocus(false)}
-            autoComplete="false"
             value={chat}
             onChange={(e) => setChat(e.target.value)}
             fullWidth

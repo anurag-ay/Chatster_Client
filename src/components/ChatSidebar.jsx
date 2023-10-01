@@ -26,14 +26,15 @@ export default function ChatSidebar({
       }}
     >
       {searchText
-        ? searchedUserArray.map((result, index) => (
+        ? searchedUserArray.map((user, index) => (
             <SearchContact
-              slectedSearchedContact={result}
+              slectedSearchedContact={user}
               setSearchText={setSearchText}
               key={index}
-              id={result._id}
-              userName={result.userName}
-              name={`${result.firstName} ${result.lastName}`}
+              id={user._id}
+              userName={user.userName}
+              avatar={user.avatar}
+              name={`${user.firstName} ${user.lastName}`}
             />
           ))
         : contacts.map((user, index) => (
@@ -46,6 +47,7 @@ export default function ChatSidebar({
               contactCardId={user._id}
               key={index}
               name={`${user.firstName} ${user.lastName}`}
+              avatar={user.avatar}
             />
           ))}
     </Stack>

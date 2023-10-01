@@ -2,7 +2,13 @@ import React from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 
-export default function ContactCard({ name, onClick, contactCardId, active }) {
+export default function ContactCard({
+  name,
+  onClick,
+  contactCardId,
+  active,
+  avatar,
+}) {
   const [currentSelectedUser] = useSelectedUser();
   return (
     <Box
@@ -22,7 +28,11 @@ export default function ContactCard({ name, onClick, contactCardId, active }) {
       }}
     >
       <Stack direction="row" spacing="0.5em" alignItems="center">
-        <Avatar sx={{ height: "2.5em", width: "2.5em" }}>H</Avatar>
+        <Avatar
+          src={avatar && `data:image/svg+xml;base64,${avatar}`}
+          alt="User"
+          sx={{ height: "2.5em", width: "2.5em" }}
+        />
 
         <Stack flex="2 1 auto">
           <Typography
