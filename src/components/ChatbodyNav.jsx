@@ -1,4 +1,4 @@
-import { Box, Avatar, Typography, Stack } from "@mui/material";
+import { Box, Avatar, Typography, Stack, IconButton } from "@mui/material";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import React, { useEffect, useState } from "react";
@@ -61,13 +61,11 @@ function ChatbodyNav() {
       position="sticky"
       direction="row"
       sx={{
-        maxWidth: "73vw",
-        minWidth: "25vw",
-        padding: "0.2em",
+        padding: "0.5em",
         backgroundColor: "#288772",
         alignItems: "center",
         justifyContent: "space-between",
-        color:"white"
+        color: "white",
       }}
     >
       <Stack direction="row" spacing="1em" alignItems="center">
@@ -83,8 +81,12 @@ function ChatbodyNav() {
         </Box>
       </Stack>
       <Stack spacing={2} direction="row" mr="1em">
-        <PhoneInTalkIcon />
-        <VideoCallIcon />
+        <IconButton>
+          <PhoneInTalkIcon />
+        </IconButton>
+        <IconButton>
+          <VideoCallIcon />
+        </IconButton>
       </Stack>
     </Stack>
   );

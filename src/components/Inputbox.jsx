@@ -64,30 +64,34 @@ function Inputbox({ setPostedChat }) {
 
   return (
     <>
-   
-      <Stack direction="row" alignItems="center" spacing="0.5em" p="0.2em"
-         sx={{backgroundColor:"#288672"}}
+      <Stack
+        direction="row"
+        alignItems="center"
+        spacing="0.5em"
+        p="0.2em"
+        sx={{ backgroundColor: "#288772" }}
       >
-        <Stack direction={"row"} spacing={3}
-       
-        >
+        <Stack direction={"row"} spacing={3}>
           <IconButton
-          sx={{
-            ":hover": {
-              boxShadow: "#BBF1E5 0px 2px 4px,#BBF1E5 0px 7px 13px -3px, #BBF1E5 0px -3px 0px inset",
-              cursor: "pointer",
-            },
-          }}
+            sx={{
+              ":hover": {
+                boxShadow:
+                  "#BBF1E5 0px 2px 4px,#BBF1E5 0px 7px 13px -3px, #BBF1E5 0px -3px 0px inset",
+                cursor: "pointer",
+              },
+            }}
           >
             <AttachFileIcon />
           </IconButton>
-          <IconButton onClick={() => setopenEmojiPicker(!openEmojiPicker)}
-                    sx={{
-                      ":hover": {
-                        boxShadow: "#BBF1E5 0px 2px 4px,#BBF1E5 0px 7px 13px -3px, #BBF1E5 0px -3px 0px inset",
-                        cursor: "pointer",
-                      },
-                    }}
+          <IconButton
+            onClick={() => setopenEmojiPicker(!openEmojiPicker)}
+            sx={{
+              ":hover": {
+                boxShadow:
+                  "#BBF1E5 0px 2px 4px,#BBF1E5 0px 7px 13px -3px, #BBF1E5 0px -3px 0px inset",
+                cursor: "pointer",
+              },
+            }}
           >
             <EmojiEmotions />
           </IconButton>
@@ -97,12 +101,13 @@ function Inputbox({ setPostedChat }) {
             ) : null}
           </Box>
           <IconButton
-                    sx={{
-                      ":hover": {
-                        boxShadow: "#BBF1E5 0px 2px 4px,#BBF1E5 0px 7px 13px -3px, #BBF1E5 0px -3px 0px inset",
-                        cursor: "pointer",
-                      },
-                    }}
+            sx={{
+              ":hover": {
+                boxShadow:
+                  "#BBF1E5 0px 2px 4px,#BBF1E5 0px 7px 13px -3px, #BBF1E5 0px -3px 0px inset",
+                cursor: "pointer",
+              },
+            }}
           >
             <KeyboardVoiceIcon />
           </IconButton>
@@ -116,10 +121,9 @@ function Inputbox({ setPostedChat }) {
           direction="row"
         >
           <TextField
-          sx={{
-            backgroundColor:"#BBF1E5"
-          }}
-          
+            sx={{
+              backgroundColor: "#BBF1E5",
+            }}
             onFocus={() => setMessageInputFocus(true)}
             onBlur={() => setMessageInputFocus(false)}
             autoComplete="false"
@@ -127,7 +131,6 @@ function Inputbox({ setPostedChat }) {
             onChange={(e) => setChat(e.target.value)}
             fullWidth
             variant="outlined"
-            
           />
           <Stack
             component="button"
@@ -140,7 +143,8 @@ function Inputbox({ setPostedChat }) {
               width: "4em",
               backgroundColor: "#288772",
               ":hover": {
-                boxShadow: "#288772 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+                boxShadow:
+                  "#288772 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
                 cursor: "pointer",
               },
             }}

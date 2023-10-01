@@ -6,11 +6,10 @@ export default function CallSidebar() {
   return (
     <Stack
       flex="1"
-      
       spacing={1}
       sx={{
-        p: "1em 1em 0em 1em",
-        height: "71.5vh",
+        p: "0.5em 0.4em 0em 0.4em",
+        height: "72.7dvh",
         overflowY: "scroll",
         minWidth: "25vw",
       }}

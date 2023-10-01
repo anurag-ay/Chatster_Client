@@ -11,8 +11,6 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
 export default function NavBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -24,7 +22,7 @@ export default function NavBar() {
   };
 
   return (
-    <AppBar position="fixed" sx={{backgroundColor:"#0C372D"}}>
+    <AppBar position="fixed" sx={{ backgroundColor: "#0C372D" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* PC Nav */}
@@ -92,11 +90,12 @@ export default function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

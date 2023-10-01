@@ -12,7 +12,6 @@ import WelcomeGif from "../assets/images/welcome.gif";
 function ChatApp() {
   const [chatActive, setChatActive] = useState(true);
   const [callActive, setCallActive] = useState(false);
-  const [notificationActive, setNotificationActive] = useState(false);
   const [selectedUser] = useSelectedUser();
 
   const [searchText, setSearchText] = useState("");
@@ -32,6 +31,7 @@ function ChatApp() {
         <Box
           sx={{
             backgroundColor: "#BBF1E5",
+            maxHeight: "90.9dvh",
           }}
         >
           <SidebarItems
@@ -42,9 +42,8 @@ function ChatApp() {
             setChatActive={setChatActive}
             callActive={callActive}
             setCallActive={setCallActive}
-            notificationActive={notificationActive}
-            setNotificationActive={setNotificationActive}
           />
+
           {chatActive ? (
             <ChatSidebar
               searchText={searchText}
@@ -54,9 +53,7 @@ function ChatApp() {
           ) : null}
           {callActive ? <CallSidebar /> : null}
         </Box>
-        <Box flex="2" maxWidth={"73.6vw"}>
-          {selectedUser ? <Chatbody /> : Welcome}
-        </Box>
+        <Box flex="2">{selectedUser ? <Chatbody /> : Welcome}</Box>
       </Stack>
     </Box>
   );

@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
+import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 
-export default function ContactCard({ name, onClick }) {
-  
-
+export default function ContactCard({ name, onClick, contactCardId, active }) {
+  const [currentSelectedUser] = useSelectedUser();
   return (
     <Box
       onClick={onClick}
-      backgroundColor={"#288672"}
+      backgroundColor={
+        contactCardId === currentSelectedUser && active ? "#0c372d" : "#288672"
+      }
       sx={{
+        borderRadius: "0.3em",
         padding: "1em",
-        color:"white",
+        color: "white",
         "&:hover": {
-          boxShadow: "#288772 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+          boxShadow:
+            "#288772 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
           cursor: "pointer",
         },
       }}
@@ -34,7 +38,7 @@ export default function ContactCard({ name, onClick }) {
             variant="body2"
             sx={{
               fontWeight: "lighter",
-              
+
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
