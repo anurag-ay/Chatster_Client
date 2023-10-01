@@ -59,14 +59,14 @@ function LogIn() {
           direction={"column"}
           alignItems={"center"}
           sx={{
-            border: "2px solid red",
+            border: "2px solid #3DC3A5",
             backgroundColor: "white",
             p: "1em",
-            boxShadow: "#ff4532 -5px 5px, #ff4532 -10px 10px,  #ff4532  -15px 15px, #ff4532  -20px 20px, #ff4532  -25px 25px"
+            boxShadow: "#3DC3A5 -5px 5px, #3DC3A5 -10px 10px,  #3DC3A5  -15px 15px, #3DC3A5  -20px 20px, #3DC3A5  -25px 25px"
           }}
         >
           <Box m="3em">
-            <Typography variant="h3">Sign In</Typography>
+            <Typography color={"#44D7B6"} variant="h3">Sign In</Typography>
           </Box>
           <Stack justifyContent="center">
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: "1.8em" }}>
@@ -101,7 +101,7 @@ function LogIn() {
                   sx={{
                     mt: "1em",
                     color: "white",
-                    backgroundColor: "#ff4542",
+                    backgroundColor: "#44D7B6",
                     padding: "0.8em",
                     width: "10em",
                     borderRadius: "2em",
@@ -109,7 +109,7 @@ function LogIn() {
                       color: "white",
                       border: "0.1em solid white",
                       // backgroundColor: "#ff4532",
-                      boxShadow: "#ff4532 0px -23px 25px 0px inset, #ff4532 0px -36px 30px 0px inset, #ff4532 0px -79px 40px 0px inset,#ff4532 0px 2px 1px,#ff4532 0px 4px 2px, #ff4532 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
+                      boxShadow: "#44D7B6 0px -23px 25px 0px inset, #44D7B6 0px -36px 30px 0px inset, #44D7B6 0px -79px 40px 0px inset,#44D7B6 0px 2px 1px,#44D7B6 0px 4px 2px, #44D7B6 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
                     },
                   }}
                   variant="outlined"
@@ -133,8 +133,8 @@ function LogIn() {
             paddingLeft={"2rem"}
             paddingRight={"2rem"}
             sx={{
-              backgroundColor: "#FF4262",
-              boxShadow: " #ff4532  5px 5px,  #ff4532  10px 10px, #ff4532  15px 15px,  #ff4532  20px 20px,  #ff4532  25px 25px",
+              backgroundColor: "#44D7B6",
+              boxShadow: " #3DC3A5  5px 5px,  #3DC3A5  10px 10px, #3DC3A5  15px 15px,  #3DC3A5  20px 20px,  #3DC3A5  25px 25px",
             }}
           >
             <Stack alignItems={"center"} direction={"column"} spacing={5}>
@@ -147,16 +147,16 @@ function LogIn() {
                 onClick={handleClickSignup}
                 sx={{
                   color: "white",
-                  backgroundColor: "#ff4542",
+                  backgroundColor: "#44D7B6",
                   border: "0.1em solid white",
                   padding: "0.8em",
                   width: "10em",
                   borderRadius: "2em",
                   "&:hover": {
-                    color: "red",
+                    color: "#44D7B6",
                     border: "0.1em solid white",
-                    backgroundColor: "#ff4532",
-                    boxShadow: "white 0px -23px 25px 0px inset, white 0px -36px 30px 0px inset, white 0px -79px 40px 0px inset,white 0px 2px 1px,#ff4532 0px 4px 2px, white 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
+                    backgroundColor: "#44D7B6",
+                    boxShadow: "white 0px -23px 25px 0px inset, white 0px -36px 30px 0px inset, white 0px -79px 40px 0px inset,white 0px 2px 1px,#44D7B6 0px 4px 2px, white 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
                   },
                 }}
                 variant="outlined"
