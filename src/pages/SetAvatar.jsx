@@ -17,9 +17,10 @@ function SetAvatar() {
   const [isLoading, setIsLoading] = useState(true);
 
   async function handleSetAvatar() {
-    const userId = location.state.userId;
+    const userId = location?.state?.userId;
+    if (!userId) return console.error("Can not set the Avatar");
     try {
-      if (setSeletedAvatarIndex) {
+      if (setSeletedAvatarIndex && userId) {
         const payload = {
           id: userId,
           avatar: avatars[selectedAvatarIndex],

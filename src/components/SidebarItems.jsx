@@ -43,7 +43,7 @@ export default function SidebarItems(props) {
   return (
     <Box sx={{ backgroundColor: "#288672", maxheight: "18vh" }}>
       {/* Search */}
-      <Box component="form" id="search-input" sx={{ padding: "0.5em" }}>
+      <Box id="search-input" sx={{ padding: "0.5em" }}>
         <Paper
           sx={{
             display: "flex",
