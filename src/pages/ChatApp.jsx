@@ -18,7 +18,11 @@ function ChatApp() {
   const [searchedUserArray, setsearchedUserArray] = useState([]);
 
   const Welcome = (
-    <Stack alignItems="center" justifyContent="center" sx={{ height: "100%" }}>
+    <Stack
+      alignItems="center"
+      justifyContent="center"
+      sx={{ height: "100%", backgroundColor: "#bbf1e5" }}
+    >
       <img src={WelcomeGif} alt="Welcome Gif" />
     </Stack>
   );
