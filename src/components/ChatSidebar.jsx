@@ -44,7 +44,7 @@ export default function ChatSidebar({
                 setSelectedUser(user._id);
                 setActive(true);
               }}
-              contactCardId={user._id}
+              userContactId={user._id}
               key={index}
               name={`${user.firstName} ${user.lastName}`}
               avatar={user.avatar}

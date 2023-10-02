@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
-
+import axios, { getLastMessagesRoute } from "../api/api";
+import { useUserInfo } from "../context/userInfoContex";
+import formatTime from "../utils/formatTimeStamp";
 
 export default function ContactCard({
   name,
@@ -9,8 +11,27 @@ export default function ContactCard({
   contactCardId,
   active,
   avatar,
+  userContactId,
 }) {
   const [currentSelectedUser] = useSelectedUser();
+  const [lastChat, setLastChat] = useState(null);
+  const userInfo = useUserInfo();
+
+  useEffect(() => {
+    try {
+      const getLastChat = async () => {
+        const res = await axios.get(
+          `${getLastMessagesRoute}/${userInfo?._id}/${userContactId}`
+        );
+        const lastChatInfo = res.data;
+        setLastChat(lastChatInfo);
+      };
+      userInfo?._id && getLastChat();
+    } catch (err) {
+      console.log(err);
+    }
+  }, [userContactId, userInfo?._id]);
+
   return (
     <Box
       onClick={onClick}
@@ -56,12 +77,7 @@ export default function ContactCard({
               minWidth: "5em",
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-            harum rerum similique corrupti neque vero in omnis maiores nemo
-            ducimus fugiat, possimus est repellat? Fugiat consectetur illum,
-            nobis aliquam officia iure minus in suscipit odit minima doloribus
-            numquam eius eligendi id debitis quae esse explicabo. Amet error
-            sequi molestiae illo!
+            {lastChat?.message}
           </Typography>
         </Stack>
         <Box
@@ -74,11 +90,11 @@ export default function ContactCard({
             variant="body2"
             sx={{
               ml: "auto",
-              fontSize: "0.8em",
+              fontSize: "0.6em",
               padding: "0.3em",
             }}
           >
-            12:55 PM
+            {formatTime(lastChat?.timestamp)}
           </Typography>
         </Box>
       </Stack>
