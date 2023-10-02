@@ -1,24 +1,39 @@
 import React, { useState } from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
+import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 
-export default function ContactCard({ name, onClick }) {
-  
 
+export default function ContactCard({
+  name,
+  onClick,
+  contactCardId,
+  active,
+  avatar,
+}) {
+  const [currentSelectedUser] = useSelectedUser();
   return (
     <Box
       onClick={onClick}
-      backgroundColor={"#288672"}
+      backgroundColor={
+        contactCardId === currentSelectedUser && active ? "#0c372d" : "#288672"
+      }
       sx={{
+        borderRadius: "0.3em",
         padding: "1em",
-        color:"white",
+        color: "white",
         "&:hover": {
-          boxShadow: "#288772 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+          boxShadow:
+            "#288772 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
           cursor: "pointer",
         },
       }}
     >
       <Stack direction="row" spacing="0.5em" alignItems="center">
-        <Avatar sx={{ height: "2.5em", width: "2.5em" }}>H</Avatar>
+        <Avatar
+          src={avatar && `data:image/svg+xml;base64,${avatar}`}
+          alt="User"
+          sx={{ height: "2.5em", width: "2.5em" }}
+        />
 
         <Stack flex="2 1 auto">
           <Typography
@@ -34,7 +49,6 @@ export default function ContactCard({ name, onClick }) {
             variant="body2"
             sx={{
               fontWeight: "lighter",
-              
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",

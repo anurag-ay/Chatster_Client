@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import ChatbodyNav from "./ChatbodyNav";
 import Chat from "./Chat";
 import Inputbox from "./Inputbox";
-import { Box } from "@mui/material";
+import { Stack } from "@mui/material";
 
 function Chatbody() {
   const [postedChat, setPostedChat] = useState();
   return (
-    <Box>
+    <Stack direction="column">
       <ChatbodyNav />
       <Chat postedChat={postedChat} />
       <Inputbox setPostedChat={setPostedChat} />
-    </Box>
+    </Stack>
   );
 }
 

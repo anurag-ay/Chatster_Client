@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./App.css";
 import ChatApp from "./pages/ChatApp";
 import UserInfoProvider from "./context/userInfoContex";
 import LogIn from "./pages/LogIn";
@@ -10,6 +9,7 @@ import CurrentSelectedUserProvider from "./context/CurrentSelectedUserContext";
 import SocketContextProvider from "./context/SocketContext";
 import LastMessageProvider from "./context/LastMessageContext";
 import ContactProvider from "./context/ContactContext";
+import SetAvatar from "./pages/SetAvatar";
 
 function App() {
   const [token] = useState(() => {
@@ -39,6 +39,7 @@ function App() {
         />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/setavatar" element={<SetAvatar />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

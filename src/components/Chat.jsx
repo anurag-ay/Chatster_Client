@@ -49,8 +49,8 @@ function Chat({ postedChat }) {
       ref={scrollRef}
       direction="column"
       sx={{
+        height: "74.2dvh",
         p: "0 0.4em 0 0.4em",
-        height: "75vh",
         backgroundColor: "#BBF1E5",
         overflowY: "scroll",
       }}

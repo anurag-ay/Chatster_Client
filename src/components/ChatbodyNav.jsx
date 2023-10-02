@@ -1,18 +1,20 @@
-import { Box, Avatar, Typography, Stack } from "@mui/material";
+import { Box, Avatar, Typography, Stack, IconButton } from "@mui/material";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import React, { useEffect, useState } from "react";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
-import axios, { getUserRoute } from "../api/api";
 import { useSocket } from "../context/SocketContext";
+import { useContacts } from "../context/ContactContext";
 
 function ChatbodyNav() {
   const [selectedUser] = useSelectedUser();
   const [isOnline, setIsOnline] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [avatar, setAvatar] = useState(null);
   const [newUserAdded, setNewUserAdded] = useState("");
   const [typing, setTyping] = useState("");
   const socket = useSocket();
+  const [contacts] = useContacts();
 
   useEffect(() => {
     socket.on("isTyping", ({ currentSelectedUser, isTyping }) => {
@@ -42,38 +44,32 @@ function ChatbodyNav() {
   }, [socket, selectedUser, newUserAdded]);
 
   useEffect(() => {
-    if (selectedUser) {
-      const getUserName = async () => {
-        try {
-          const res = await axios.get(`${getUserRoute}/${selectedUser}`);
-          const { firstName, lastName } = res.data;
-          setDisplayName(`${firstName} ${lastName}`);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      getUserName();
+    if (selectedUser && contacts) {
+      const user = contacts.find((user) => user._id === selectedUser);
+      if (user) {
+        const { firstName, lastName, avatar } = user;
+        setDisplayName(`${firstName} ${lastName}`);
+        setAvatar(avatar);
+      }
     }
-  }, [selectedUser]);
+  }, [selectedUser, contacts]);
 
   return (
     <Stack
       position="sticky"
       direction="row"
       sx={{
-        maxWidth: "73vw",
-        minWidth: "25vw",
-        padding: "0.2em",
+        padding: "0.5em",
         backgroundColor: "#288772",
         alignItems: "center",
         justifyContent: "space-between",
-        color:"white"
+        color: "white",
       }}
     >
       <Stack direction="row" spacing="1em" alignItems="center">
         <Avatar
-          alt="Remy Sharp"
-          src="https://w0.peakpx.com/wallpaper/766/843/HD-wallpaper-cool-anime-boy-mirror-selfie-animation.jpg"
+          alt="User"
+          src={avatar && `data:image/svg+xml;base64,${avatar}`}
         />
         <Box>
           <Typography variant="body1" sx={{ fontSize: "1em" }}>
@@ -83,8 +79,12 @@ function ChatbodyNav() {
         </Box>
       </Stack>
       <Stack spacing={2} direction="row" mr="1em">
-        <PhoneInTalkIcon />
-        <VideoCallIcon />
+        <IconButton>
+          <PhoneInTalkIcon />
+        </IconButton>
+        <IconButton>
+          <VideoCallIcon />
+        </IconButton>
       </Stack>
     </Stack>
   );

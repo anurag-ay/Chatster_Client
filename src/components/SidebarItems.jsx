@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Call, Chat, NotificationAdd, Search } from "@mui/icons-material";
+import { Call, Chat, Search } from "@mui/icons-material";
 import axios, { searchUserRoute } from "../api/api";
 
 import {
@@ -23,8 +23,6 @@ export default function SidebarItems(props) {
     setChatActive,
     callActive,
     setCallActive,
-    notificationActive,
-    setNotificationActive,
   } = props;
 
   useEffect(() => {
@@ -44,14 +42,14 @@ export default function SidebarItems(props) {
 
   return (
     <Box
-    sx={{backgroundColor:"#288672"}}
-    >
+    <Box sx={{ backgroundColor: "#288672", maxheight: "18vh" }}>
       {/* Search */}
-      <Box component="form" id="search-input" sx={{ padding: "0.5em" }}>
+      <Box id="search-input" sx={{ padding: "0.5em" }}>
         <Paper
           sx={{
             display: "flex",
-            alignItems: "center",backgroundColor:"#BBF1E5"
+            alignItems: "center",
+            backgroundColor: "#BBF1E5",
           }}
         >
           <InputBase
@@ -77,7 +75,6 @@ export default function SidebarItems(props) {
             if (chatActive === false) {
               setChatActive(true);
               setCallActive(false);
-              setNotificationActive(false);
             }
           }}
         >
@@ -92,7 +89,6 @@ export default function SidebarItems(props) {
             if (callActive === false) {
               setCallActive(true);
               setChatActive(false);
-              setNotificationActive(false);
             }
           }}
         >
@@ -100,23 +96,6 @@ export default function SidebarItems(props) {
             <Call sx={{ color: "black", height: "1.2em", width: "1.2em" }} />
           ) : (
             <Call />
-          )}
-        </IconButton>
-        <IconButton
-          onClick={() => {
-            if (notificationActive === false) {
-              setNotificationActive(true);
-              setChatActive(false);
-              setCallActive(false);
-            }
-          }}
-        >
-          {notificationActive ? (
-            <NotificationAdd
-              sx={{ color: "black", height: "1.2em", width: "1.2em" }}
-            />
-          ) : (
-            <NotificationAdd />
           )}
         </IconButton>
       </Stack>
