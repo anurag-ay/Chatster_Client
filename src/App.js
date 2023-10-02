@@ -10,6 +10,7 @@ import SocketContextProvider from "./context/SocketContext";
 import LastMessageProvider from "./context/LastMessageContext";
 import ContactProvider from "./context/ContactContext";
 import SetAvatar from "./pages/SetAvatar";
+import MessageProvider from "./context/MessageContext";
 
 function App() {
   const [token] = useState(() => {
@@ -21,9 +22,11 @@ function App() {
       <SocketContextProvider>
         <ContactProvider>
           <CurrentSelectedUserProvider>
-            <LastMessageProvider>
-              <ChatApp />
-            </LastMessageProvider>
+            <MessageProvider>
+              <LastMessageProvider>
+                <ChatApp />
+              </LastMessageProvider>
+            </MessageProvider>
           </CurrentSelectedUserProvider>
         </ContactProvider>
       </SocketContextProvider>
