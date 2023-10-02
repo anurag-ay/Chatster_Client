@@ -41,7 +41,6 @@ export default function SidebarItems(props) {
   }, [searchText, setsearchedUserArray, userInfo]);
 
   return (
-    <Box
     <Box sx={{ backgroundColor: "#288672", maxheight: "18vh" }}>
       {/* Search */}
       <Box id="search-input" sx={{ padding: "0.5em" }}>
