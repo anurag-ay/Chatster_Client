@@ -41,7 +41,6 @@ export default function CallCard() {
               variant="body2"
               sx={{
                 fontWeight: "lighter",
-
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",

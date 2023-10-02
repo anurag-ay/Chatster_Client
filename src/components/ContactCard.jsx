@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
+
 
 export default function ContactCard({
   name,
@@ -48,7 +49,6 @@ export default function ContactCard({
             variant="body2"
             sx={{
               fontWeight: "lighter",
-
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",

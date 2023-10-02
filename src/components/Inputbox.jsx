@@ -131,6 +131,7 @@ function Inputbox({ setPostedChat }) {
             onChange={(e) => setChat(e.target.value)}
             fullWidth
             variant="outlined"
+            
           />
           <Stack
             component="button"
