@@ -209,7 +209,7 @@ function SignUp() {
                     color: "white",
                     border: "0.1em solid white",
                     backgroundColor: "#44D7B6",
-                    boxShadow: "#44D7B6 0px -23px 25px 0px inset, #44D7B6 0px -36px 30px 0px inset, #44D7B6 0px -79px 40px 0px inset,#44D7B6 0px 2px 1px,#44D7B6 0px 4px 2px, #44D7B6 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
+                    boxShadow: "#44D7B6 0px -23px 25px 0px inset, #44D7B6 0px -36px 30px 0px inset, #44D7B6 0px -79px 40px 0px inset,#44D7B6 0px 2px 1px,#44D7B6 0px 4px 2px, #44D7B6 0px 8px 4px, rgba(0, 0, 0, 0.09)  0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
                   },
                 }}
                 variant="outlined"

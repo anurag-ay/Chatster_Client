@@ -62,7 +62,7 @@ function LogIn() {
             border: "2px solid #3DC3A5",
             backgroundColor: "white",
             p: "1em",
-            boxShadow: "#3DC3A5 -5px 5px, #3DC3A5 -10px 10px,  #3DC3A5  -15px 15px, #3DC3A5  -20px 20px, #3DC3A5  -25px 25px"
+            boxShadow: "#3DC3A5  -5px 5px, #3DC3A5 -10px 10px,  #3DC3A5  -15px 15px, #3DC3A5  -20px 20px, #3DC3A5  -25px 25px"
           }}
         >
           <Box m="3em">
