@@ -8,7 +8,6 @@ import formatTime from "../utils/formatTimeStamp";
 export default function ContactCard({
   name,
   onClick,
-  contactCardId,
   active,
   avatar,
   userContactId,
@@ -36,7 +35,7 @@ export default function ContactCard({
     <Box
       onClick={onClick}
       backgroundColor={
-        contactCardId === currentSelectedUser && active ? "#0c372d" : "#288672"
+        userContactId === currentSelectedUser && active ? "#0c372d" : "#288672"
       }
       sx={{
         borderRadius: "0.3em",
