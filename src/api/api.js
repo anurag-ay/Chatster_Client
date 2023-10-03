@@ -20,7 +20,6 @@ export const searchUserRoute = "/api/searchUser";
 
 // Chat Route
 export const messagesRoute = "/api/chats";
-export const getLastMessagesRoute = "/api/chats/getLastChat";
 
 // Auth Route
 export const decodeTokenRoute = "/api/decodeToken";
