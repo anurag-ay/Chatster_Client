@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { Box, Stack, TextField, IconButton } from "@mui/material";
+import { Stack, TextField, IconButton } from "@mui/material";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import { EmojiEmotions, Send } from "@mui/icons-material";
 import { useState } from "react";
-import EmojiPicker from "emoji-picker-react";
 import axios, { messagesRoute } from "../api/api";
 import { useUserInfo } from "../context/userInfoContex";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 import { useSocket } from "../context/SocketContext";
+import ReactEmojiPicker from "./ReactEmojiPicker";
 
 function Inputbox({ setPostedChat }) {
   const [messageInputFocus, setMessageInputFocus] = useState(false);
@@ -95,11 +95,15 @@ function Inputbox({ setPostedChat }) {
           >
             <EmojiEmotions />
           </IconButton>
-          <Box position="absolute" sx={{ bottom: "9vh", left: "30vw" }}>
-            {openEmojiPicker ? (
-              <EmojiPicker onEmojiClick={handleEmojiClick} />
-            ) : null}
-          </Box>
+
+          {openEmojiPicker && (
+            <ReactEmojiPicker
+              handleEmojiClick={handleEmojiClick}
+              setopenEmojiPicker={setopenEmojiPicker}
+              openEmojiPicker={openEmojiPicker}
+            />
+          )}
+
           <IconButton
             sx={{
               ":hover": {
@@ -131,7 +135,6 @@ function Inputbox({ setPostedChat }) {
             onChange={(e) => setChat(e.target.value)}
             fullWidth
             variant="outlined"
-            
           />
           <Stack
             component="button"
