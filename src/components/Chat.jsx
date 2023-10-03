@@ -1,16 +1,12 @@
 import { Stack } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Message from "./Message";
-import { useUserInfo } from "../context/userInfoContex";
-import axios, { messagesRoute } from "../api/api";
 import formatTime from "../utils/formatTimeStamp";
-import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 import { useSocket } from "../context/SocketContext";
+import { useMessage } from "../context/MessageContext";
 
 function Chat({ postedChat }) {
-  const userInfo = useUserInfo();
-  const [messages, setMessages] = useState([]);
-  const [currentSelectedUser] = useSelectedUser();
+  const [messages, setMessages] = useMessage();
   const scrollRef = useRef();
   const socket = useSocket();
 
@@ -20,7 +16,7 @@ function Chat({ postedChat }) {
         setMessages((prevMessages) => [...prevMessages, data]);
       });
     }
-  }, [socket]);
+  }, [socket, setMessages]);
 
   useEffect(() => {
     const messageContaner = scrollRef.current;
@@ -31,26 +27,15 @@ function Chat({ postedChat }) {
     if (postedChat) {
       setMessages((prevMessages) => [...prevMessages, postedChat]);
     }
-  }, [postedChat]);
-
-  useEffect(() => {
-    async function getMessages(userId) {
-      const res = await axios.get(
-        `${messagesRoute}/${userId}/${currentSelectedUser}`
-      );
-      const messageList = res.data;
-      setMessages(messageList);
-    }
-    if (userInfo?._id && currentSelectedUser) getMessages(userInfo._id);
-  }, [currentSelectedUser, userInfo?._id]);
+  }, [postedChat, setMessages]);
 
   return (
     <Stack
       ref={scrollRef}
       direction="column"
       sx={{
+        height: "74.2dvh",
         p: "0 0.4em 0 0.4em",
-        height: "75vh",
         backgroundColor: "#BBF1E5",
         overflowY: "scroll",
       }}

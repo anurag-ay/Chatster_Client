@@ -27,14 +27,15 @@ function SignUp() {
     };
 
     try {
-      await axios.post(registerUserRoute, payload);
+      const res = await axios.post(registerUserRoute, payload);
       setUserName("");
       setFirstName("");
       setLastName("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
-      navigate("/login");
+      const id = res.data._id;
+      navigate("/setavatar", { state: { userId: id } });
     } catch (err) {
       console.log(err);
     }
@@ -51,8 +52,6 @@ function SignUp() {
       justifyContent={"center"}
       width={"100vw"}
       height={"100vh"}
-
-      
     >
       <Box
         display={"flex"}
@@ -61,7 +60,6 @@ function SignUp() {
         sx={{
           color: "white",
           backgroundColor: "gray",
-          
         }}
       >
         <Stack
@@ -114,7 +112,6 @@ function SignUp() {
         width={"35vw"}
         height={"80vh"}
         alignItems={"center"}
-      
         sx={{
           border: "2px solid #44D7B6",
           backgroundColor: "white",
@@ -125,8 +122,12 @@ function SignUp() {
         }}
       >
         <Stack direction={"column"} spacing={2} alignItems={"center"} p="1em">
-          <Typography variant="h3" >Create Account</Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, color:"#FF4262"}}>
+          <Typography variant="h3">Create Account</Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{ mt: 3, color: "#FF4262" }}
+          >
             <Grid container columnSpacing="0.5em" rowSpacing="1em">
               <Grid item xs={12}>
                 <TextField

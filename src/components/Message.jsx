@@ -18,8 +18,8 @@ function Message({ message, type, timestamp }) {
           <Typography
             variant="body2"
             sx={{
-              fontSize: "0.7em",
-              fontWeight: "light",
+              fontSize: "0.55em",
+              fontWeight: "500",
               p: "0 0.2em 0.2em 0.2em",
             }}
           >

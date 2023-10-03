@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ContactCard from "./ContactCard";
 import { Stack } from "@mui/material";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
@@ -12,36 +12,42 @@ export default function ChatSidebar({
 }) {
   const [, setSelectedUser] = useSelectedUser();
   const [contacts] = useContacts([]);
- 
+  const [active, setActive] = useState(false);
+
   return (
     <Stack
       flex="1"
       spacing={1}
       sx={{
-        p: "1em 1em 0em 1em",
-        height: "71.5vh",
+        p: "0.5em 0.4em 0em 0.4em",
+        height: "72.7dvh",
         overflowY: "scroll",
         minWidth: "25vw",
       }}
     >
       {searchText
-        ? searchedUserArray.map((result, index) => (
+        ? searchedUserArray.map((user, index) => (
             <SearchContact
-              slectedSearchedContact={result}
+              slectedSearchedContact={user}
               setSearchText={setSearchText}
               key={index}
-              id={result._id}
-              userName={result.userName}
-              name={`${result.firstName} ${result.lastName}`}
+              id={user._id}
+              userName={user.userName}
+              avatar={user.avatar}
+              name={`${user.firstName} ${user.lastName}`}
             />
           ))
-        : contacts.map((ele, index) => (
+        : contacts.map((user, index) => (
             <ContactCard
-             
-              onClick={() => setSelectedUser(ele._id) 
-                }
+              active={active}
+              onClick={() => {
+                setSelectedUser(user._id);
+                setActive(true);
+              }}
+              userContactId={user._id}
               key={index}
-              name={`${ele.firstName} ${ele.lastName}`}
+              name={`${user.firstName} ${user.lastName}`}
+              avatar={user.avatar}
             />
           ))}
     </Stack>
