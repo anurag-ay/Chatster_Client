@@ -30,9 +30,9 @@ export default function formatTime(IsoTime) {
     } else {
       // format the date as day/fullMonth/year
       let day = date.getDate();
-      let month = date.toLocaleString("default", { month: "long" });
+      let month = date.toLocaleString("default", { month: "short" });
       let year = date.getFullYear();
-      let strDate = day + "/" + month + "/" + year;
+      let strDate = day + " " + month + " " + year;
       return strTime + " " + strDate;
     }
   }
