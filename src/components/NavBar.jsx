@@ -1,29 +1,28 @@
 import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { useUserInfo } from "../context/userInfoContex";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Avatar,
+  Tooltip,
+  MenuItem,
+} from "@mui/material";
 import styled from "@emotion/styled";
 import logo from "../assets/images/logo.svg";
-const Image = styled("img")({
-  height: "2em",
-  width: "2em",
-  marginRight: "0.5em",
-});
+import { useUserInfo } from "../context/userInfoContex";
+
 export default function NavBar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const userInfo = useUserInfo();
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -121,3 +120,9 @@ export default function NavBar() {
     </AppBar>
   );
 }
+
+const Image = styled("img")({
+  height: "2em",
+  width: "2em",
+  marginRight: "0.5em",
+});
