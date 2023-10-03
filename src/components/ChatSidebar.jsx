@@ -44,6 +44,8 @@ export default function ChatSidebar({
                 setSelectedUser(user._id);
                 setActive(true);
               }}
+              lastChat={user.lastChat}
+              lastChatTimestamp={user.lastChatTimestamp}
               userContactId={user._id}
               key={index}
               name={`${user.firstName} ${user.lastName}`}

@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
-import axios, { getLastMessagesRoute } from "../api/api";
-import { useUserInfo } from "../context/userInfoContex";
 import formatTime from "../utils/formatTimeStamp";
 
 export default function ContactCard({
@@ -11,25 +9,10 @@ export default function ContactCard({
   active,
   avatar,
   userContactId,
+  lastChat,
+  lastChatTimestamp,
 }) {
   const [currentSelectedUser] = useSelectedUser();
-  const [lastChat, setLastChat] = useState(null);
-  const userInfo = useUserInfo();
-
-  useEffect(() => {
-    try {
-      const getLastChat = async () => {
-        const res = await axios.get(
-          `${getLastMessagesRoute}/${userInfo?._id}/${userContactId}`
-        );
-        const lastChatInfo = res.data;
-        setLastChat(lastChatInfo);
-      };
-      userInfo?._id && getLastChat();
-    } catch (err) {
-      console.log(err);
-    }
-  }, [userContactId, userInfo?._id]);
 
   return (
     <Box
@@ -76,7 +59,7 @@ export default function ContactCard({
               minWidth: "5em",
             }}
           >
-            {lastChat?.message}
+            {lastChat}
           </Typography>
         </Stack>
         <Box
@@ -93,7 +76,7 @@ export default function ContactCard({
               padding: "0.3em",
             }}
           >
-            {formatTime(lastChat?.timestamp)}
+            {formatTime(lastChatTimestamp)}
           </Typography>
         </Box>
       </Stack>
