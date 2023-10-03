@@ -50,8 +50,11 @@ function SignUp() {
       display={"flex"}
       alignItems={"center"}
       justifyContent={"center"}
-      width={"100vw"}
-      height={"100vh"}
+      sx={{
+        backgroundColor: "#288672",
+        width: "100vw",
+        height: "100vh",
+      }}
     >
       <Box
         display={"flex"}
@@ -60,6 +63,7 @@ function SignUp() {
         sx={{
           color: "white",
           backgroundColor: "gray",
+          boxShadow: "0em 0em  2em #313131",
         }}
       >
         <Stack
@@ -74,8 +78,7 @@ function SignUp() {
           paddingLeft={"2rem"}
           paddingRight={"2rem"}
           sx={{
-            backgroundColor: "#44D7B6",
-            boxShadow: "#3DC3A5 -5px 5px, #3DC3A5 -10px 10px,  #3DC3A5  -15px 15px, #3DC3A5 -20px 20px, #3DC3A5 -25px 25px"
+            backgroundColor: "#0c372d",
           }}
         >
           <Typography variant="h2">Welcome Back!</Typography>
@@ -96,7 +99,8 @@ function SignUp() {
                 color: "#44D7B6",
                 border: "0.1em solid white",
                 backgroundColor: "#44D7B6",
-                boxShadow: "white 0px -23px 25px 0px inset, white 0px -36px 30px 0px inset, white 0px -79px 40px 0px inset,white 0px 2px 1px,#44D7B6 0px 4px 2px, white 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
+                boxShadow:
+                  "white 0px -23px 25px 0px inset, white 0px -36px 30px 0px inset, white 0px -79px 40px 0px inset,white 0px 2px 1px,#44D7B6 0px 4px 2px, white 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px",
               },
             }}
             variant="outlined"
@@ -114,15 +118,15 @@ function SignUp() {
         alignItems={"center"}
         sx={{
           border: "2px solid #44D7B6",
-          backgroundColor: "white",
-          // boxShadow:" red 0px 5px 15px",
-          boxShadow: " #3DC3A5 5px 5px,  #3DC3A5 10px 10px,#3DC3A5  15px 15px,  #3DC3A5  20px 20px, #3DC3A5 25px 25px",
-          color:"#44D7B6"
-          
+          backgroundColor: "#bbf1e5",
+          color: "#44D7B6",
+          boxShadow: "0em 0em  2em #313131",
         }}
       >
         <Stack direction={"column"} spacing={2} alignItems={"center"} p="1em">
-          <Typography variant="h3">Create Account</Typography>
+          <Typography variant="h3" color="#0c372d">
+            Create Account
+          </Typography>
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -200,7 +204,7 @@ function SignUp() {
                 sx={{
                   mt: "1em",
                   color: "white",
-                  backgroundColor: "#44D7B6",
+                  backgroundColor: "#0c372d",
                   border: "0.1em solid white",
                   padding: "0.8em",
                   width: "10em",
@@ -209,7 +213,8 @@ function SignUp() {
                     color: "white",
                     border: "0.1em solid white",
                     backgroundColor: "#44D7B6",
-                    boxShadow: "#44D7B6 0px -23px 25px 0px inset, #44D7B6 0px -36px 30px 0px inset, #44D7B6 0px -79px 40px 0px inset,#44D7B6 0px 2px 1px,#44D7B6 0px 4px 2px, #44D7B6 0px 8px 4px, rgba(0, 0, 0, 0.09)  0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px"
+                    boxShadow:
+                      "#44D7B6 0px -23px 25px 0px inset, #44D7B6 0px -36px 30px 0px inset, #44D7B6 0px -79px 40px 0px inset,#44D7B6 0px 2px 1px,#44D7B6 0px 4px 2px, #44D7B6 0px 8px 4px, rgba(0, 0, 0, 0.09)  0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px",
                   },
                 }}
                 variant="outlined"
