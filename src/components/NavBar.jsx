@@ -11,7 +11,13 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useUserInfo } from "../context/userInfoContex";
-
+import styled from "@emotion/styled";
+import logo from "../assets/images/logo.svg";
+const Image = styled("img")({
+  height: "2em",
+  width: "2em",
+  marginRight: "0.5em",
+});
 export default function NavBar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const userInfo = useUserInfo();
@@ -27,7 +33,7 @@ export default function NavBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* PC Nav */}
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Image src={logo} sx={{ display: { xs: "none", md: "flex" } }} />
           <Typography
             variant="h6"
             noWrap
@@ -46,7 +52,6 @@ export default function NavBar() {
             Chatster
           </Typography>
           {/* Mobile */}
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
