@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 import { useSocket } from "../context/SocketContext";
 import { useContacts } from "../context/ContactContext";
+import formatTime from "../utils/formatTimeStamp";
 
 function ChatbodyNav() {
   const [selectedUser] = useSelectedUser();
@@ -15,6 +16,12 @@ function ChatbodyNav() {
   const [typing, setTyping] = useState("");
   const socket = useSocket();
   const [contacts] = useContacts();
+  const [recentOnline, setRecentOnline] = useState(null);
+
+  useEffect(() => {
+    const user = contacts.find((contact) => contact._id === selectedUser);
+    setRecentOnline(user.lastOnline && formatTime(user.lastOnline));
+  }, [contacts, selectedUser]);
 
   useEffect(() => {
     socket.on("isTyping", ({ currentSelectedUser, isTyping }) => {
@@ -75,7 +82,9 @@ function ChatbodyNav() {
           <Typography variant="body1" sx={{ fontSize: "1em" }}>
             {displayName}
           </Typography>
-          <Typography variant="body2">{typing ? typing : isOnline}</Typography>
+          <Typography variant="body2">
+            {typing ? typing : isOnline ? isOnline : recentOnline}
+          </Typography>
         </Box>
       </Stack>
       <Stack spacing={2} direction="row" mr="1em">
