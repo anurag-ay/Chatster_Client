@@ -16,6 +16,9 @@ export default function ContactProvider({ children }) {
     async function getContacts(_id) {
       const res = await axios.get(`${getContactsRoute}/${_id}`);
       const contactsList = res.data;
+      contactsList.sort(
+        (a, b) => new Date(b.lastChatTimestamp) - new Date(a.lastChatTimestamp)
+      );
       setContacts(contactsList);
     }
     const _id = userInfo?._id;
