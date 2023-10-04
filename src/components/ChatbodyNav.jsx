@@ -83,7 +83,11 @@ function ChatbodyNav() {
             {displayName}
           </Typography>
           <Typography variant="body2">
-            {typing ? typing : isOnline ? isOnline : recentOnline}
+            {typing
+              ? typing
+              : isOnline
+              ? isOnline
+              : recentOnline && `Last Online ${recentOnline}`}
           </Typography>
         </Box>
       </Stack>
