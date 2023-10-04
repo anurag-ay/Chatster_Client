@@ -11,6 +11,7 @@ import {
   Divider,
 } from "@mui/material";
 import { useUserInfo } from "../context/userInfoContex";
+import useDebounced from "../hooks/useDebounced";
 
 export default function SidebarItems(props) {
   const userInfo = useUserInfo();
@@ -25,12 +26,14 @@ export default function SidebarItems(props) {
     setCallActive,
   } = props;
 
+  const debouncedSearchValue = useDebounced(searchText);
+
   useEffect(() => {
     if (userInfo) {
       const searchUsers = async () => {
-        if (searchText) {
+        if (debouncedSearchValue) {
           const res = await axios.get(
-            `${searchUserRoute}/${searchText}/${userInfo?.userName}`
+            `${searchUserRoute}/${debouncedSearchValue}/${userInfo?.userName}`
           );
           const users = res.data;
           setsearchedUserArray(users);
@@ -38,7 +41,7 @@ export default function SidebarItems(props) {
       };
       searchUsers();
     }
-  }, [searchText, setsearchedUserArray, userInfo]);
+  }, [debouncedSearchValue, setsearchedUserArray, userInfo]);
 
   return (
     <Box sx={{ backgroundColor: "#288672", maxheight: "18vh" }}>
