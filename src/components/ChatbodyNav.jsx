@@ -82,7 +82,10 @@ function ChatbodyNav() {
           <Typography variant="body1" sx={{ fontSize: "1em" }}>
             {displayName}
           </Typography>
-          <Typography variant="body2">
+          <Typography
+            variant="body2"
+            sx={{ fontSize: "0.75em", fontWeight: "500" }}
+          >
             {typing
               ? typing
               : isOnline
