@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import axios, { getContactsRoute } from "../api/api";
 import { useUserInfo } from "./userInfoContex";
 import { useLastChat } from "./LastChatContext";
+import { useSocket } from "./SocketContext";
+import sortContacts from "../utils/sortContacts";
+import updateLastChatInContacts from "../utils/updateLastChatInContacts";
 
 const ContactContext = React.createContext();
 
@@ -13,25 +16,31 @@ export default function ContactProvider({ children }) {
   const [contacts, setContacts] = useState([]);
   const userInfo = useUserInfo();
   const [lastChatInput] = useLastChat();
+  const socket = useSocket();
+
+  console.log("chekc");
+  useEffect(() => {
+    if (socket) {
+      socket.on("recieveMessage", (lastChatInput) => {
+        if (contacts.length) {
+          const updatedContacts = updateLastChatInContacts(
+            contacts,
+            lastChatInput
+          );
+          sortContacts(updatedContacts);
+          setContacts(updatedContacts);
+        }
+      });
+    }
+  }, [socket, contacts]);
 
   useEffect(() => {
-    if (lastChatInput) {
-      const updatedContacts = contacts.map((contact) => {
-        if (contact._id === lastChatInput.receiver) {
-          return {
-            ...contact,
-            lastChatTimestamp: lastChatInput.timestamp,
-            lastChat: lastChatInput.message,
-          };
-        }
-        return contact;
-      });
-
-      updatedContacts.sort(
-        (a, b) => new Date(b.lastChatTimestamp) - new Date(a.lastChatTimestamp)
-      );
+    if (lastChatInput && contacts) {
+      const updatedContacts = updateLastChatInContacts(contacts, lastChatInput);
+      sortContacts(updatedContacts);
       setContacts(updatedContacts);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastChatInput]);
 
   useEffect(() => {
