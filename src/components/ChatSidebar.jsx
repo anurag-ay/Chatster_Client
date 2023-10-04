@@ -28,6 +28,7 @@ export default function ChatSidebar({
       {searchText
         ? searchedUserArray.map((user, index) => (
             <SearchContact
+              setActive={setActive}
               slectedSearchedContact={user}
               setSearchText={setSearchText}
               key={index}

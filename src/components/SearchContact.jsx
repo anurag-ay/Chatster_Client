@@ -12,6 +12,7 @@ export default function SearchContact({
   setSearchText,
   slectedSearchedContact,
   avatar,
+  setActive,
 }) {
   const userInfo = useUserInfo();
   const [contacts, setContact] = useContacts();
@@ -38,6 +39,7 @@ export default function SearchContact({
         );
         if (!isPresent) setContact((prev) => [slectedSearchedContact, ...prev]);
         setCurrentSelectedUser(slectedSearchedContact._id);
+        setActive(true);
       }
     } catch (err) {
       console.log(err);
