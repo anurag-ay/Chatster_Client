@@ -9,6 +9,7 @@ import { useUserInfo } from "../context/userInfoContex";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 import { useSocket } from "../context/SocketContext";
 import ReactEmojiPicker from "./ReactEmojiPicker";
+import { useLastChat } from "../context/LastChatContext";
 
 function Inputbox({ setPostedChat }) {
   const [messageInputFocus, setMessageInputFocus] = useState(false);
@@ -17,6 +18,7 @@ function Inputbox({ setPostedChat }) {
   const userInfo = useUserInfo();
   const [currentSelectedUser] = useSelectedUser();
   const socket = useSocket();
+  const [, setLastChatInput] = useLastChat();
 
   useEffect(() => {
     socket.emit("typing", {
@@ -44,6 +46,7 @@ function Inputbox({ setPostedChat }) {
           message: content,
           timestamp: createdAt,
         };
+
         if (socket) {
           const realTimeChat = {
             ...postedChat,
@@ -52,6 +55,8 @@ function Inputbox({ setPostedChat }) {
           socket.emit("sendMessage", realTimeChat);
         }
         setPostedChat(postedChat);
+        postedChat.receiver = currentSelectedUser;
+        setLastChatInput(postedChat);
       } catch (err) {
         console.log(err);
       }
