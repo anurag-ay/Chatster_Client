@@ -20,7 +20,7 @@ export default function formatTime(IsoTime) {
     if (diff < 60000) {
       return "recently";
     } else {
-      return strTime;
+      return `Today ${strTime}`;
     }
   } else {
     // check if the date is yesterday
