@@ -18,7 +18,6 @@ export default function ContactProvider({ children }) {
   const [lastChatInput] = useLastChat();
   const socket = useSocket();
 
-  console.log("chekc");
   useEffect(() => {
     if (socket) {
       socket.on("recieveMessage", (lastChatInput) => {
