@@ -51,6 +51,7 @@ function Inputbox({ setPostedChat }) {
           const realTimeChat = {
             ...postedChat,
             to: receiver,
+            from: userInfo?._id,
           };
           socket.emit("sendMessage", realTimeChat);
         }
