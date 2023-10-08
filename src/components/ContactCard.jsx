@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 import formatTime from "../utils/formatTimeStamp";
+import ImageIcon from "@mui/icons-material/Image";
 
 export default function ContactCard({
   name,
@@ -11,6 +12,7 @@ export default function ContactCard({
   userContactId,
   lastChat,
   lastChatTimestamp,
+  lastChatType,
 }) {
   const [currentSelectedUser] = useSelectedUser();
 
@@ -48,19 +50,39 @@ export default function ContactCard({
           >
             {name}
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              fontWeight: "lighter",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              maxWidth: "15em",
-              minWidth: "5em",
-            }}
-          >
-            {lastChat}
-          </Typography>
+          {lastChatType === "image" ? (
+            <Stack direction="row" alignItems="center">
+              <ImageIcon sx={{ height: "0.7em", width: "0.7em" }} />
+              <Typography
+                variant="body2"
+                sx={{
+                  ml: "0.2em",
+                  fontWeight: "lighter",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxWidth: "15em",
+                  minWidth: "5em",
+                }}
+              >
+                Image
+              </Typography>
+            </Stack>
+          ) : (
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: "lighter",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                maxWidth: "15em",
+                minWidth: "5em",
+              }}
+            >
+              {lastChat}
+            </Typography>
+          )}
         </Stack>
         <Box
           sx={{

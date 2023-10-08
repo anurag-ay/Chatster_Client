@@ -47,6 +47,7 @@ export default function ChatSidebar({
               }}
               lastChat={user.lastChat}
               lastChatTimestamp={user.lastChatTimestamp}
+              lastChatType={user.lastChatType}
               userContactId={user._id}
               key={index}
               name={`${user.firstName} ${user.lastName}`}
