@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Stack, TextField, IconButton } from "@mui/material";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import { EmojiEmotions, Send } from "@mui/icons-material";
 import { useState } from "react";
-import axios, { messagesRoute } from "../api/api";
+import axios, { addImageMessageRoute, messagesRoute } from "../api/api";
 import { useUserInfo } from "../context/userInfoContex";
 import { useSelectedUser } from "../context/CurrentSelectedUserContext";
 import { useSocket } from "../context/SocketContext";
@@ -19,6 +19,7 @@ function Inputbox({ setPostedChat }) {
   const [currentSelectedUser] = useSelectedUser();
   const socket = useSocket();
   const [, setLastChatInput] = useLastChat();
+  const imageInputRef = useRef();
 
   useEffect(() => {
     socket.emit("typing", {
@@ -70,6 +71,50 @@ function Inputbox({ setPostedChat }) {
     setChat((prevChat) => prevChat + EmojiObj.emoji);
   }
 
+  function handleOpenFileExplorer() {
+    imageInputRef.current.click();
+  }
+
+  async function handleImagePick(e) {
+    try {
+      const picture = e.target.files[0];
+
+      const form = new FormData();
+      form.append("sender", userInfo._id);
+      form.append("receiver", currentSelectedUser);
+      form.append("status", "sent");
+      form.append("contentType", "image");
+      form.append("image", picture);
+
+      const res = await axios.post(addImageMessageRoute, form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const { content, createdAt, receiver, contentType } = res.data;
+      const postedChat = {
+        type: "send",
+        message: content,
+        timestamp: createdAt,
+        contentType: contentType,
+      };
+
+      if (socket) {
+        const realTimeChat = {
+          ...postedChat,
+          to: receiver,
+          from: userInfo?._id,
+        };
+        socket.emit("sendMessage", realTimeChat);
+      }
+      setPostedChat(postedChat);
+      postedChat.receiver = currentSelectedUser;
+      setLastChatInput(postedChat);
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <>
       <Stack
@@ -81,6 +126,7 @@ function Inputbox({ setPostedChat }) {
       >
         <Stack direction={"row"} spacing={3}>
           <IconButton
+            onClick={handleOpenFileExplorer}
             sx={{
               ":hover": {
                 boxShadow:
@@ -91,6 +137,14 @@ function Inputbox({ setPostedChat }) {
           >
             <AttachFileIcon />
           </IconButton>
+          <input
+            onChange={handleImagePick}
+            type="file"
+            id="file"
+            ref={imageInputRef}
+            style={{ display: "none" }}
+            accept="image/*"
+          />
           <IconButton
             onClick={() => setopenEmojiPicker(!openEmojiPicker)}
             sx={{
