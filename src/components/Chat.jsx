@@ -1,9 +1,10 @@
 import { Stack } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import Message from "./Message";
 import formatTime from "../utils/formatTimeStamp";
 import { useSocket } from "../context/SocketContext";
 import { useMessage } from "../context/MessageContext";
+import TextMessage from "./TextMessage";
+import ImageMessage from "./ImageMessage";
 
 function Chat({ postedChat }) {
   const [messages, setMessages] = useMessage();
@@ -40,14 +41,23 @@ function Chat({ postedChat }) {
         overflowY: "scroll",
       }}
     >
-      {messages.map((msg, index) => (
-        <Message
-          key={index}
-          message={msg.message}
-          timestamp={formatTime(msg.timestamp)}
-          type={msg.type}
-        />
-      ))}
+      {messages.map((msg, index) =>
+        msg.contentType === "text" ? (
+          <TextMessage
+            key={index}
+            message={msg.message}
+            timestamp={formatTime(msg.timestamp)}
+            type={msg.type}
+          />
+        ) : (
+          <ImageMessage
+            key={index}
+            message={msg.message}
+            timestamp={formatTime(msg.timestamp)}
+            type={msg.type}
+          />
+        )
+      )}
     </Stack>
   );
 }
