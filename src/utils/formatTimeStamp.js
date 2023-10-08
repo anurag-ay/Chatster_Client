@@ -33,7 +33,7 @@ export default function formatTime(IsoTime) {
       let month = date.toLocaleString("default", { month: "short" });
       let year = date.getFullYear();
       let strDate = day + " " + month + " " + year;
-      return strTime + " " + strDate;
+      return strTime + ", " + strDate;
     }
   }
 }
