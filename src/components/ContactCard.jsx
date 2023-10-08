@@ -76,7 +76,7 @@ export default function ContactCard({
               padding: "0.3em",
             }}
           >
-            {formatTime(lastChatTimestamp)}
+            {lastChatTimestamp && formatTime(lastChatTimestamp)}
           </Typography>
         </Box>
       </Stack>
