@@ -37,14 +37,16 @@ function Inputbox({ setPostedChat }) {
           receiver: currentSelectedUser,
           content: chat,
           status: "sent",
+          contentType: "text",
         };
         const res = await axios.post(messagesRoute, payload);
         setChat("");
-        const { content, createdAt, receiver } = res.data;
+        const { content, createdAt, receiver, contentType } = res.data;
         const postedChat = {
           type: "send",
           message: content,
           timestamp: createdAt,
+          contentType: contentType,
         };
 
         if (socket) {
